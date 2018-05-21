@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" prefHeight="593.0" prefWidth="726.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.OrderHistory">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <AnchorPane prefHeight="594.0" prefWidth="772.0">
+            <children>
+                <ImageView fx:id="logoImage" fitHeight="214.0" fitWidth="414.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@logo.png" />
+                    </image>
+                </ImageView>
+            <Button fx:id="returnButton" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#onReturnButtonPressed" prefHeight="38.0" prefWidth="94.0" text="Return" />
+            <Label fx:id="ordersLabel" layoutX="563.0" layoutY="32.0" prefHeight="17.0" prefWidth="42.0" text="Orders" textAlignment="CENTER" />
+            <Label fx:id="currentOrderLabel" layoutX="190.0" layoutY="264.0" text="Current Order" />
+            <TableView fx:id="orderHIstoryTable" layoutX="484.0" layoutY="71.0" prefHeight="471.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="orderIDColumn" prefWidth="100.0" text="Order ID" />
+                <TableColumn fx:id="dayOfPurchaseColumn" prefWidth="99.0" text="Day of Purchase" />
+              </columns>
+            </TableView>
+            <TextArea fx:id="currentOrderTextArea" layoutX="25.0" layoutY="300.0" prefHeight="207.0" prefWidth="430.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</GridPane>

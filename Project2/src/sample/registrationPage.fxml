@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" prefHeight="593.0" prefWidth="726.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <AnchorPane prefHeight="594.0" prefWidth="772.0">
+            <children>
+                <ImageView fitHeight="118.0" fitWidth="705.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@logotext.png" />
+                    </image>
+                </ImageView>
+            <TextField fx:id="usernameField" layoutX="213.0" layoutY="157.0" prefHeight="25.0" prefWidth="301.0" />
+            <Label layoutX="213.0" layoutY="140.0" prefHeight="17.0" prefWidth="68.0" text="Username:" />
+            <TextField fx:id="firstNameField" layoutX="213.0" layoutY="199.0" />
+            <TextField fx:id="surNameField" layoutX="365.0" layoutY="199.0" />
+            <Label layoutX="213.0" layoutY="182.0" text="First name:" />
+            <Label layoutX="365.0" layoutY="182.0" text="Last name:" />
+            <TextField fx:id="addressField" layoutX="212.0" layoutY="241.0" prefHeight="25.0" prefWidth="301.0" />
+            <Label layoutX="213.0" layoutY="224.0" text="Address:" />
+            <TextField fx:id="phoneNumberField" layoutX="213.0" layoutY="335.0" prefHeight="25.0" prefWidth="185.0" />
+            <Label layoutX="213.0" layoutY="314.0" text="Phone number:" />
+            <Label layoutX="407.0" layoutY="314.0" text="Age:" />
+            <Label layoutX="450.0" layoutY="314.0" text="Gender:" />
+            <ChoiceBox fx:id="genderSelect" layoutX="450.0" layoutY="335.0" prefHeight="25.0" prefWidth="63.0" />
+            <Label layoutX="213.0" layoutY="360.0" text="Password:" />
+            <Label layoutX="363.0" layoutY="360.0" text="Confirm password:" />
+            <Button fx:id="registerRegisterButton" layoutX="585.0" layoutY="535.0" mnemonicParsing="false" onAction="#onRegisterRegisterButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Register" />
+            <Button fx:id="registerCancel" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#onRegisterCancelButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Cancel" />
+            <Label fx:id="registrationStatusLabel" alignment="TOP_CENTER" layoutX="212.0" layoutY="444.0" prefHeight="135.0" prefWidth="301.0" textFill="#bb0000" />
+            <PasswordField fx:id="passwordField" layoutX="213.0" layoutY="380.0" />
+            <PasswordField fx:id="confirmPasswordField" layoutX="365.0" layoutY="380.0" />
+            <TextField fx:id="ageField" layoutX="406.0" layoutY="335.0" prefHeight="25.0" prefWidth="33.0" />
+            <TextField fx:id="emailField" layoutX="212.0" layoutY="284.0" prefHeight="25.0" prefWidth="301.0" />
+            <Label layoutX="213.0" layoutY="266.0" text="Email:" />
+            </children>
+        </AnchorPane>
+    </children>
+</GridPane>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" prefHeight="593.0" prefWidth="726.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AccountDetailsController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <AnchorPane prefHeight="614.0" prefWidth="762.0" style="-fx-background-color: transparent;">
+            <children>
+            <Button fx:id="updateButton" layoutX="585.0" layoutY="535.0" mnemonicParsing="false" onAction="#updateButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Update" />
+            <Button fx:id="cancelButton" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Cancel" />
+            <Label fx:id="updateLabel" alignment="CENTER" layoutX="213.0" layoutY="535.0" prefHeight="44.0" prefWidth="301.0" />
+            <ImageView fitHeight="127.0" fitWidth="127.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="38.0" layoutY="121.0" prefHeight="44.0" prefWidth="80.0" text="First Name" />
+            <Label alignment="CENTER" layoutX="38.0" layoutY="178.0" prefHeight="44.0" prefWidth="80.0" text="Last Name" />
+            <TextField fx:id="firstNameField" layoutX="132.0" layoutY="131.0" />
+            <TextField fx:id="lastNameField" layoutX="133.0" layoutY="188.0" />
+            <Label alignment="CENTER" layoutX="207.0" layoutY="42.0" prefHeight="56.0" prefWidth="301.0" text="Account Information">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="79.0" fitWidth="127.0" layoutX="587.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="38.0" layoutY="241.0" prefHeight="44.0" prefWidth="80.0" text="Address" />
+            <Label alignment="CENTER" layoutX="27.0" layoutY="297.0" prefHeight="44.0" prefWidth="102.0" text="Phone Number" />
+            <TextField fx:id="addressField" layoutX="132.0" layoutY="251.0" />
+            <TextField fx:id="phoneNumberField" layoutX="132.0" layoutY="307.0" />
+            <Label alignment="CENTER" layoutX="302.0" layoutY="122.0" prefHeight="44.0" prefWidth="80.0" text="Email" />
+            <TextField fx:id="emailField" layoutX="382.0" layoutY="132.0" />
+            <Label alignment="CENTER" layoutX="302.0" layoutY="179.0" prefHeight="44.0" prefWidth="80.0" text="Gender" />
+            <Label alignment="CENTER" layoutX="302.0" layoutY="241.0" prefHeight="44.0" prefWidth="80.0" text="Age" />
+            <Label alignment="CENTER" layoutX="302.0" layoutY="297.0" prefHeight="44.0" prefWidth="80.0" text="Employee ID" />
+            <Label fx:id="salaryLabel" layoutX="477.0" layoutY="307.0" prefHeight="25.0" prefWidth="193.0" text="Salary:" />
+            <Label alignment="CENTER" layoutX="302.0" layoutY="351.0" prefHeight="44.0" prefWidth="80.0" text="Admin ID" />
+            <Label alignment="CENTER" layoutX="179.0" layoutY="412.0" prefHeight="44.0" prefWidth="102.0" text="New Password" />
+            <Label alignment="CENTER" layoutX="434.0" layoutY="412.0" prefHeight="44.0" prefWidth="102.0" text="Old Password" />
+            <TextField fx:id="genderChoiceBox" layoutX="382.0" layoutY="188.0" />
+            <TextField fx:id="ageField" editable="false" layoutX="382.0" layoutY="251.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField fx:id="employeeIDField" editable="false" layoutX="382.0" layoutY="307.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField fx:id="adminIDField" editable="false" layoutX="382.0" layoutY="361.0" prefHeight="25.0" prefWidth="80.0" />
+            <PasswordField fx:id="newPasswordField" layoutX="156.0" layoutY="456.0" />
+            <PasswordField fx:id="oldPasswordField" layoutX="411.0" layoutY="456.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</GridPane>

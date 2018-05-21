@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RecieptArea">
+   <children>
+      <Label alignment="CENTER" layoutX="234.0" layoutY="80.0" prefHeight="45.0" prefWidth="230.0" text="Thank you for your purchase!" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="returnButton" layoutX="63.0" layoutY="423.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="45.0" prefWidth="102.0" text="Return" />
+      <Button fx:id="exitButton" layoutX="563.0" layoutY="423.0" mnemonicParsing="false" onAction="#exitButtonPressed" prefHeight="45.0" prefWidth="90.0" text="Exit" />
+      <TextArea fx:id="boughtItemField" editable="false" layoutX="198.0" layoutY="139.0" prefHeight="280.0" prefWidth="337.0" />
+   </children>
+</AnchorPane>

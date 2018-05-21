@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" prefHeight="593.0" prefWidth="726.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <AnchorPane prefHeight="594.0" prefWidth="772.0">
+            <children>
+            <Button fx:id="returnButton" layoutX="14.0" layoutY="541.0" mnemonicParsing="false" onAction="#onReturnButtonPressed" prefHeight="38.0" prefWidth="94.0" text="Return" />
+            <TableView fx:id="item_table" layoutX="14.0" layoutY="97.0" prefHeight="435.0" prefWidth="149.0">
+              <columns>
+                <TableColumn fx:id="firstColumnitem" prefWidth="30.0" text="ID" />
+                <TableColumn fx:id="secondColumnitem" prefWidth="120.0" text="Name" />
+              </columns>
+            </TableView>
+            <RadioButton fx:id="usersRadioB" layoutX="650.0" layoutY="560.0" mnemonicParsing="false" onAction="#radioSelect" text="Users">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="adminGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="itemsRadioB" layoutX="650.0" layoutY="532.0" mnemonicParsing="false" onAction="#radioSelect" prefWidth="84.0" selected="true" text="Items" toggleGroup="$adminGroup">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </RadioButton>
+            <Button layoutX="286.0" layoutY="541.0" mnemonicParsing="false" onAction="#onRemoveButtonPressed" prefHeight="38.0" prefWidth="94.0" text="Remove" />
+            <Button layoutX="394.0" layoutY="541.0" mnemonicParsing="false" onAction="#onAddButtonPressed" prefHeight="38.0" prefWidth="94.0" text="Add" />
+            <Button layoutX="505.0" layoutY="541.0" mnemonicParsing="false" onAction="#onUpdateButtonpressed" prefHeight="38.0" prefWidth="94.0" text="Update" />
+            <TextField fx:id="itemID_UsernameField" layoutX="255.0" layoutY="210.0" />
+            <Label fx:id="itemID_usernameLabel" layoutX="255.0" layoutY="187.0" text="ItemID/Username" />
+            <TextField fx:id="price_lastnameField" layoutX="255.0" layoutY="255.0" />
+            <Label fx:id="itemname_firstnamelabel" layoutX="452.0" layoutY="187.0" text="itemName/firstName" />
+            <Label layoutX="255.0" layoutY="280.0" />
+            <Label fx:id="price_lastnameLabel" layoutX="255.0" layoutY="235.0" text="Price/lastname" />
+            <TextField fx:id="addressField" layoutX="451.0" layoutY="297.0" />
+            <Label fx:id="stock_emailLabel" layoutX="451.0" layoutY="235.0" text="Stock/email" />
+            <TextField fx:id="phoneNumberField" layoutX="255.0" layoutY="339.0" />
+            <Label fx:id="ageLabel" layoutX="255.0" layoutY="280.0" text="Age:" />
+            <TextField fx:id="stock_emailField" layoutX="451.0" layoutY="255.0" />
+            <TextField fx:id="ageField" layoutX="255.0" layoutY="297.0" />
+            <TextField fx:id="genderField" layoutX="451.0" layoutY="339.0" />
+            <TextField fx:id="itemname_firstnameField" layoutX="451.0" layoutY="210.0" />
+            <Label fx:id="addressLabel" layoutX="453.0" layoutY="280.0" text="Address:" />
+            <Label fx:id="phoneNumberLabel" layoutX="253.0" layoutY="322.0" text="Phone number:" />
+            <Label fx:id="genderLabel" layoutX="453.0" layoutY="322.0" text="Gender:" />
+            <TextField fx:id="searchField" layoutX="14.0" layoutY="62.0" prefHeight="25.0" prefWidth="119.0" />
+            <Label layoutX="14.0" layoutY="45.0" text="Search:" />
+                <ImageView fx:id="logoImage" fitHeight="164.0" fitWidth="338.0" layoutX="274.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@logo.png" />
+                    </image>
+                </ImageView>
+            <Button fx:id="searchButton" layoutX="137.0" layoutY="62.0" mnemonicParsing="false" onAction="#onSearchButtonPressed" prefHeight="25.0" prefWidth="17.0" text="S" />
+            <TableView fx:id="user_table" layoutX="14.0" layoutY="97.0" prefHeight="435.0" prefWidth="149.0">
+               <columns>
+                  <TableColumn fx:id="firstColumnuser" prefWidth="65.0" text="Username" />
+                  <TableColumn fx:id="secondColumnuser" prefWidth="85.0" text="First name:" />
+               </columns>
+            </TableView>
+            <TextField fx:id="passwordField" layoutX="253.0" layoutY="380.0" />
+            <Label fx:id="passwordLabel" layoutX="253.0" layoutY="364.0" text="Password:" />
+            <Label fx:id="statusLabel" layoutX="250.0" layoutY="475.0" prefHeight="17.0" prefWidth="355.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</GridPane>
