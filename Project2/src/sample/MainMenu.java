@@ -12,9 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.Model.DBConnection;
-
-import java.io.IOException;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.text.DecimalFormat;

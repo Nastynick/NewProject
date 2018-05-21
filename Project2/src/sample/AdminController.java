@@ -15,13 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.Model.DBConnection;
-import sample.Model.User;
-
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -171,9 +165,9 @@ public class AdminController implements Initializable {
             if (!itemID_UsernameField.getText().equals("")){
                 int i = 0;
                 int age = Integer.valueOf(ageField.getText());
-                User u = new User(itemID_UsernameField.getText(), passwordField.getText(), age, addressField.getText(), stock_emailField.getText(), itemname_firstnameField.getText(), price_lastnameField.getText(), genderField.getText(), phoneNumberField.getText());
+                User u = new User();
                 for (User s : dbc.userList("")) {
-                    if (s.getUsername().equals(u.getUsername())) {
+                    if (s.getUserName().equals(u.getUserName())) {
                         i = 1;
                     }
                 }
@@ -271,15 +265,15 @@ public class AdminController implements Initializable {
             row.setOnMouseClicked((MouseEvent event) -> {
                 if (event.getClickCount() == 1 && (!row.isEmpty())) {
                     User rowData = row.getItem();
-                    itemID_UsernameField.setText(rowData.getUsername());
-                    itemname_firstnameField.setText(rowData.getFirstName());
-                    price_lastnameField.setText(rowData.getSurName());
+                    itemID_UsernameField.setText(rowData.getUserName());
+                    itemname_firstnameField.setText(rowData.getFirstname());
+                    price_lastnameField.setText(rowData.getLastname());
                     stock_emailField.setText(rowData.getEmail());
                     ageField.setText(String.valueOf(rowData.getAge()));
                     addressField.setText(rowData.getAddress());
                     phoneNumberField.setText(rowData.getPhoneNumber());
                     genderField.setText(rowData.getGender());
-                    passwordField.setText(rowData.getPassword());
+                    passwordField.setText(rowData.getPassWord());
                 }
             });
             return row;

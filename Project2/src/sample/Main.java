@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.Model.DBConnection;
+
 
 
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        DBConnection testDB = new DBConnection();
-        testDB.Connect();
+/*        DBConnection testDB = new DBConnection();
+        testDB.Connect();*/
       //  testDB.testRemoteDB("user2");
 
       /*  ArrayList testItemList;

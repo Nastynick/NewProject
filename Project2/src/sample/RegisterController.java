@@ -80,9 +80,7 @@ public class RegisterController implements Initializable {
     private void register(ActionEvent event) throws Exception {
         if (errorCheck()) {
             try {
-                User user = new User(usernameField.getText(), passwordField.getText(), Integer.valueOf(ageField.getText()), addressField.getText(),
-                        emailField.getText(), firstNameField.getText(), surNameField.getText(),
-                        genderSelect.getValue(), phoneNumberField.getText());
+                User user = new User();
                 dbc.insertUser(user); // adds a user to the database with the values you insert into the variable user - Niclas
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
@@ -130,7 +128,7 @@ public class RegisterController implements Initializable {
         int usernamecheck = 0;
 
         for (User s : dbc.userList("")) {
-            if (usernameField.getText().equals(s.getUsername())) {
+            if (usernameField.getText().equals(s.getUserName())) {
                 usernamecheck = 1;
             }
         }

@@ -1,14 +1,14 @@
 package sample;
 
-import sample.Model.User;
+
 
 public class Employee extends User {
 
     private int employeeNumber;
     private double salary;
 
-    public Employee(String username, String password, int age, String address, String email, String firstName, String surName, String gender, String phoneNumber, int employeeNumber, double salary) {
-        super(username, password, age, address, email, firstName, surName, gender, phoneNumber);
+    public Employee(String userName, String passWord, String address, String email, String firstname, String lastname, int age, String phoneNumber, String gender, int employeeNumber, double salary) {
+        super(userName, passWord, address, email, firstname, lastname, age, phoneNumber, gender);
         this.employeeNumber = employeeNumber;
         this.salary = salary;
     }

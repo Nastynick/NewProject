@@ -13,9 +13,9 @@ public class TestingClass {
 
     public ArrayList<User> getUsers() throws Exception {
         ArrayList<User> users = new ArrayList<>();
-        User user = new User ("Sazzhole","123",12,"Lund","ivan@gmail.com","Ivan","Marsipan","Other","98765432");
-        User user2 = new User ("Nastynick","123",13,"Kristianstad","Niclas@gmail.com","Niclas","Everlönn","Female","123456789");
-        User user3 = new User ("Croft","123",5,"Lund","croft@gmail.com","Carl","Greinsmark","Male","00087655");
+        User user = new User ();
+        User user2 = new User ();
+        User user3 = new User ();
         users.add(user);
         users.add(user2);
         users.add(user3);
@@ -63,9 +63,7 @@ public class TestingClass {
     }
 
     public User testingAccountInformation () {
-        User aUser = new User("Demo", "Demo", 22, "Kämpargränden 12A", "123@Niclas.com","Adolf",
-                "Gustavsson", "Male", "123456789");
-        return aUser;
+        //return aUser;
 
     }
 
