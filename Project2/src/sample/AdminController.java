@@ -70,7 +70,7 @@ public class AdminController implements Initializable {
     private Label price_lastnameLabel;
 
     @FXML
-    private TextField addressField;
+    private TextField address_ImageURL_Field;
 
     @FXML
     private Label stock_emailLabel;
@@ -79,7 +79,7 @@ public class AdminController implements Initializable {
     private TextField phoneNumberField;
 
     @FXML
-    private Label ageLabel;
+    private Label age_desc_Label;
 
     @FXML
     private TextField stock_emailField;
@@ -94,7 +94,7 @@ public class AdminController implements Initializable {
     private TextField itemname_firstnameField;
 
     @FXML
-    private Label addressLabel;
+    private Label address_ImageURLLabel;
 
     @FXML
     private Label phoneNumberLabel;
@@ -117,9 +117,8 @@ public class AdminController implements Initializable {
     @FXML
     private Label statusLabel;
 
-    private ArrayList<Item> localitemlist = new ArrayList<>();
-
-    private ArrayList<User> localuserlist = new ArrayList<>();
+    @FXML
+    private TextArea productdescField;
 
     private DBSingleton dbc = new DBSingleton();
 
@@ -140,7 +139,7 @@ public class AdminController implements Initializable {
         if (itemsRadioB.isSelected()) {
             if (!itemID_UsernameField.getText().equals("")) {
                 int i = 0;
-                Item item = new Item (Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(),Double.valueOf(price_lastnameField.getText()),Integer.valueOf(stock_emailField.getText()),"Test","test");
+                Item item = new Item (Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(),Double.valueOf(price_lastnameField.getText()),Integer.valueOf(stock_emailField.getText()),productdescField.getText(),address_ImageURL_Field.getText());
                 for (Item it : dbc.getItemList("",1)) {
                     if (it.getItemID()==(item.getItemID())) {
                         i = 1;
@@ -169,7 +168,7 @@ public class AdminController implements Initializable {
 
             if (!itemID_UsernameField.getText().equals("")){
                 int i = 0;
-                User u = new User(itemID_UsernameField.getText(),passwordField.getText(),addressField.getText(),stock_emailField.getText(),itemname_firstnameField.getText(),price_lastnameField.getText(),Integer.valueOf(ageField.getText()),phoneNumberField.getText());
+                User u = new User(itemID_UsernameField.getText(),passwordField.getText(), address_ImageURL_Field.getText(),stock_emailField.getText(),itemname_firstnameField.getText(),price_lastnameField.getText(),Integer.valueOf(ageField.getText()),phoneNumberField.getText());
                 for (User s : dbc.getUserList("",1)) {
                    if (s.getUserName().equals(u.getUserName())) {
                         i = 1;
@@ -199,9 +198,15 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void onRemoveButtonPressed(ActionEvent event) {
-        // db.removeUser(itemId_usernameField.GetText();
+    private void onRemoveButtonPressed(ActionEvent event) throws Exception {
+        if (!itemID_UsernameField.getText().equals("")) {
+            if (itemsRadioB.isSelected()) {
+                Item item = new Item(Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(), Double.valueOf(price_lastnameField.getText()), Integer.valueOf(stock_emailField.getText()), "Test", address_ImageURL_Field.getText());
+                dbc.alterItem(item, 1);
+            }
 
+        }
+        updateTables();
     }
 
     @FXML
@@ -228,31 +233,30 @@ public class AdminController implements Initializable {
 
     public void radioSelect(ActionEvent event) throws Exception {
         if (itemsRadioB.isSelected()) {
-            selection("ItemID:", "Item name:", "Price:", "Stock:", false);
+            selection("ItemID:", "Item name:", "Price:", "Stock:","ImageURL:","Produc Desc:", false);
 
         } else if (usersRadioB.isSelected()) {
-            selection("Username:", "First name:", "Last name:", "Email:", true);
+            selection("Username:", "First name:", "Last name:", "Email:","Address:","Age:", true);
         }
     }
 
-    private void selection(String one, String two, String three, String four, boolean b) throws Exception {
+    private void selection(String one, String two, String three, String four, String five,String six, boolean b) throws Exception {
         clearAll();
         itemID_usernameLabel.setText(one);
         itemname_firstnamelabel.setText(two);
         price_lastnameLabel.setText(three);
         stock_emailLabel.setText(four);
+        address_ImageURLLabel.setText(five);
+        age_desc_Label.setText(six);
         ageField.setVisible(b);
-        ageLabel.setVisible(b);
-        addressField.setVisible(b);
-        addressLabel.setVisible(b);
         phoneNumberField.setVisible(b);
         phoneNumberLabel.setVisible(b);
-        genderField.setVisible(b);
-        genderLabel.setVisible(b);
         passwordField.setVisible(b);
         passwordLabel.setVisible(b);
         user_table.setVisible(b);
         item_table.setVisible(!b);
+        productdescField.setVisible(!b);
+
 
     }
 
@@ -274,7 +278,7 @@ public class AdminController implements Initializable {
                     price_lastnameField.setText(rowData.getLastname());
                     stock_emailField.setText(rowData.getEmail());
                     ageField.setText(String.valueOf(rowData.getAge()));
-                    addressField.setText(rowData.getAddress());
+                    address_ImageURL_Field.setText(rowData.getAddress());
                     phoneNumberField.setText(rowData.getPhoneNumber());
                     passwordField.setText(rowData.getPassWord());
                 }
@@ -291,6 +295,8 @@ public class AdminController implements Initializable {
                     itemname_firstnameField.setText(rowData.getItemName());
                     price_lastnameField.setText(String.valueOf(rowData.getPrice()));
                     stock_emailField.setText(String.valueOf(rowData.getStock()));
+                    productdescField.setText(rowData.getDescription());
+                    address_ImageURL_Field.setText(rowData.getImageURL());
 
                 }
             });
@@ -304,9 +310,8 @@ public class AdminController implements Initializable {
         price_lastnameField.setText("");
         stock_emailField.setText("");
         ageField.setText("");
-        addressField.setText("");
+        address_ImageURL_Field.setText("");
         phoneNumberField.setText("");
-        genderField.setText("");
     }
 
     private void updateTables() throws Exception {
@@ -328,7 +333,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            selection("ItemID:", "Item name:", "Price:", "Stock:", false);
+            selection("ItemID:", "Item name:", "Price:", "Stock:","ImageURL","Product desc:", false);
             firstTimeSetup();
         } catch (Exception e) {
             e.printStackTrace();

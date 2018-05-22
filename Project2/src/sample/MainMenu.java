@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.math.RoundingMode;
 import java.net.URL;
@@ -74,6 +76,9 @@ public class MainMenu implements Initializable {
     @FXML
     private TableColumn<Item, Double> priceColumn;
 
+    @FXML
+    private ImageView itemImage;
+
     private ArrayList<Item> itemlist = new ArrayList<>();
     private ArrayList<Item> cartP = new ArrayList<>();
     private ObservableList<Item> cartPreviewData;
@@ -86,6 +91,9 @@ public class MainMenu implements Initializable {
 
     @FXML
     private Button adminButton;
+
+    @FXML
+    private Label productDescLabel;
 
     @FXML
     void onAdminPressed(ActionEvent event) throws Exception {
@@ -179,6 +187,20 @@ public class MainMenu implements Initializable {
                     cartPreviewData.add(rowData);
                     cartPreviewTable.setItems(cartPreviewData);
                     cartP.add(rowData);
+                }
+            });
+
+            row.hoverProperty().addListener((observable) -> {
+                Item it = row.getItem();
+
+                if (row.isHover() && it != null) {
+                    productDescLabel.setText(it.getDescription());
+                    String imagepath = it.getImageURL();
+                    Image image = new Image(imagepath);
+                    itemImage.setImage(image);
+                } else {
+                    productDescLabel.setText("");
+                    itemImage.setImage(null);
                 }
             });
             return row ;

@@ -92,6 +92,26 @@ public class DBSingleton {
 
     }
 
+    void alterItem (Item it, int operationMethod) {
+        String query = null;
+        switch (operationMethod) {
+            case 1:
+                query = "DELETE FROM item WHERE iditem = ?";
+                break;
+        }
+        try {
+            Connection conn = setConnection();
+            assert conn != null;
+            PreparedStatement pst = conn.prepareStatement(query);
+            if (operationMethod == 1) {
+                pst.setInt(1,it.getItemID());
+            }
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     ArrayList<User> getUserList(String search, int searchmethod) {
             String query = null;
         switch (searchmethod) {
