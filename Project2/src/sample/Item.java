@@ -6,15 +6,33 @@ public class Item {
     private String itemName;
     private double price;
     private int stock;
+    private String description;
+    private String imageURL;
 
-    public Item(int itemID, String itemName, double price, int stock) {
+    public Item(int itemID, String itemName, double price, int stock, String description, String imageURL) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.price = price;
         this.stock = stock;
+        this.description = description;
+        this.imageURL = imageURL;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 
     public int getItemID() {
         return itemID;

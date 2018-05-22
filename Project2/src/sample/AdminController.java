@@ -121,13 +121,15 @@ public class AdminController implements Initializable {
 
     private ArrayList<User> localuserlist = new ArrayList<>();
 
+    private DBSingleton dbc = new DBSingleton();
+
 
     @FXML
     private void onSearchButtonPressed(ActionEvent event) throws Exception {
         if (usersRadioB.isSelected()) {
-            updateUsers(searchField.getText());
+            updateUsers(searchField.getText(),2);
         } else if (itemsRadioB.isSelected()) {
-            updateItems(searchField.getText());
+            updateItems(searchField.getText(),2);
         }
 
 
@@ -138,19 +140,18 @@ public class AdminController implements Initializable {
         if (itemsRadioB.isSelected()) {
             if (!itemID_UsernameField.getText().equals("")) {
                 int i = 0;
-                Item item = new Item (Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(),Double.valueOf(price_lastnameField.getText()),Integer.valueOf(stock_emailField.getText()));
-                for (Item it : localitemlist) {
+                Item item = new Item (Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(),Double.valueOf(price_lastnameField.getText()),Integer.valueOf(stock_emailField.getText()),"Test","test");
+                for (Item it : dbc.getItemList("",1)) {
                     if (it.getItemID()==(item.getItemID())) {
                         i = 1;
                     }
                 }
                 if (i == 1) {
-
                     statusLabel.setTextFill(Color.web("#eb0000"));
                     statusLabel.setText("ERROR: DUPLICATE ITEM: Check user input!");
                 } else {
                     try {
-                        //dbc.insertItem(item);
+                        dbc.insertItem(item);
                         statusLabel.setTextFill(Color.web("#000000"));
                         statusLabel.setText("Command successful!");
                     } catch (Exception e) {
@@ -168,12 +169,11 @@ public class AdminController implements Initializable {
 
             if (!itemID_UsernameField.getText().equals("")){
                 int i = 0;
-                int age = Integer.valueOf(ageField.getText());
-                //User u = new User();
-                for (User s : localuserlist) {
-/*                    if (s.getUserName().equals(u.getUserName())) {
+                User u = new User(itemID_UsernameField.getText(),passwordField.getText(),addressField.getText(),stock_emailField.getText(),itemname_firstnameField.getText(),price_lastnameField.getText(),Integer.valueOf(ageField.getText()),phoneNumberField.getText());
+                for (User s : dbc.getUserList("",1)) {
+                   if (s.getUserName().equals(u.getUserName())) {
                         i = 1;
-                    }*/
+                    }
                 }
                 if (i == 1) {
 
@@ -181,7 +181,7 @@ public class AdminController implements Initializable {
                     statusLabel.setText("ERROR: DUPLICATE USER: Check user input!");
                 } else {
                     try {
-                        //dbc.insertUser(u);
+                        dbc.insertUser(u);
                         statusLabel.setTextFill(Color.web("#000000"));
                         statusLabel.setText("Command successful!");
                     } catch (Exception e) {
@@ -260,8 +260,8 @@ public class AdminController implements Initializable {
         //dbc.Connect();
         firstColumnitem.setCellValueFactory(new PropertyValueFactory<>("itemID"));
         secondColumnitem.setCellValueFactory(new PropertyValueFactory<>("itemName"));
-        firstColumnuser.setCellValueFactory(new PropertyValueFactory<>("username"));
-        secondColumnuser.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        firstColumnuser.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        secondColumnuser.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         updateTables();
 
         user_table.setRowFactory((TableView<User> tv) -> {
@@ -276,7 +276,6 @@ public class AdminController implements Initializable {
                     ageField.setText(String.valueOf(rowData.getAge()));
                     addressField.setText(rowData.getAddress());
                     phoneNumberField.setText(rowData.getPhoneNumber());
-                    genderField.setText(rowData.getGender());
                     passwordField.setText(rowData.getPassWord());
                 }
             });
@@ -311,17 +310,17 @@ public class AdminController implements Initializable {
     }
 
     private void updateTables() throws Exception {
-        updateItems("");
-        updateUsers("");
+        updateItems("",1);
+        updateUsers("",1);
     }
 
-    private void updateItems (String search) throws Exception {
-        ObservableList<Item> itemData = FXCollections.observableArrayList(localitemlist
+    private void updateItems (String search, int searchMethod) throws Exception {
+        ObservableList<Item> itemData = FXCollections.observableArrayList(dbc.getItemList(search,searchMethod)
         );
         item_table.setItems(itemData);
     }
-    private void updateUsers (String search) throws Exception {
-        ObservableList<User> userData = FXCollections.observableArrayList(localuserlist);
+    private void updateUsers (String search, int searchMethod) throws Exception {
+        ObservableList<User> userData = FXCollections.observableArrayList(dbc.getUserList(search,searchMethod));
         user_table.setItems(userData);
     }
 

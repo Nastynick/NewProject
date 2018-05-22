@@ -9,14 +9,17 @@ public class TestingClass {
 
     public TestingClass() {
     }
+}
 
+/*
     public ArrayList<User> getUsers() throws Exception {
         ArrayList<User> users = new ArrayList<>();
 
         return users;
     }
 
-    public ArrayList<Item> getItems() throws Exception {
+    */
+/*public ArrayList<Item> getItems() throws Exception {
         ArrayList<Item> items = new ArrayList<>();
         Item item1 = new Item (1, "Ticket to Ride: Europe", 19.99, 23);
         Item item2 = new Item (2, "Red Dragon Inn 5", 49.99, 5);
@@ -58,3 +61,4 @@ public class TestingClass {
 
 
 }
+*/

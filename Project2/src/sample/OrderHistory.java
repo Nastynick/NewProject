@@ -71,7 +71,7 @@ public class OrderHistory implements Initializable{
     private void startUp () throws Exception {
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
         dayOfPurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
-        ObservableList<Order> oldOrders = FXCollections.observableArrayList(tc.oldOrder());
+        ObservableList<Order> oldOrders = FXCollections.observableArrayList();
         orderHIstoryTable.setItems(oldOrders);
 
 

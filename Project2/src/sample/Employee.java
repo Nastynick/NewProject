@@ -7,8 +7,8 @@ public class Employee extends User {
     private int employeeNumber;
     private double salary;
 
-    public Employee(String userName, String passWord, String address, String email, String firstname, String lastname, int age, String phoneNumber, String gender, int employeeNumber, double salary) {
-        super(userName, passWord, address, email, firstname, lastname, age, phoneNumber, gender);
+    public Employee(String userName, String passWord, String address, String email, String firstname, String lastname, int age, String phoneNumber, int employeeNumber, double salary) {
+        super(userName, passWord, address, email, firstname, lastname, age, phoneNumber);
         this.employeeNumber = employeeNumber;
         this.salary = salary;
     }

@@ -74,11 +74,11 @@ public class RecieptArea implements Initializable {
         boughtItemField.setText("Thank you for your order " + o.getUserName()+ "!" + "\nOrderID: " + o.getOrderID() + "\nStatus: "
                 + o.getStatus() + "\nOrder date: " + o.getOrderDate()+ "\nShipped Date:" + o.getShippedDate() +"\nAdditional Comment:"
                 + o.getComment() + "\n\nItems purchased: \n" + boughtList + "\nTOTAL COST: " + df.format(price));
-       // mailSetup(); DISABLED UNTILL USERNAME UPDATE (name subject to change) IS IMPLEMENTED
+        //mailSetup();
     }
     private void mailSetup () {
         final String username = "dragoncaveproject2";
-        final String password = "GlassGlass";
+        final String password = "GlassGlassIcecream";
         Properties props = new Properties();
         props.put("mail.smtp.auth",true);
         props.put("mail.smtp.starttls.enable",true);

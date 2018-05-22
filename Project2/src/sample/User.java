@@ -10,9 +10,8 @@ public class User {
     private String lastname;
     private int age;
     private String phoneNumber;
-    private String gender;
 
-    public User(String userName, String passWord, String address, String email, String firstname, String lastname, int age, String phoneNumber, String gender) {
+    public User(String userName, String passWord, String address, String email, String firstname, String lastname, int age, String phoneNumber) {
         this.userName = userName;
         this.passWord = passWord;
         this.address = address;
@@ -21,7 +20,6 @@ public class User {
         this.lastname = lastname;
         this.age = age;
         this.phoneNumber = phoneNumber;
-        this.gender = gender;
     }
 
     public String getUserName() {
@@ -88,11 +86,4 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 }
