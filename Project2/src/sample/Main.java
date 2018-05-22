@@ -14,28 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-/*        DBConnection testDB = new DBConnection();
-        testDB.Connect();*/
-      //  testDB.testRemoteDB("user2");
 
-      /*  ArrayList testItemList;
-
-        testItemList = testDB.itemList();
-
-        System.out.println(testItemList);
-        */
-      /*  ArrayList testUserList;
-
-        testUserList = testDB.userList();
-
-        System.out.println(testUserList);
-        */
-      /*  ArrayList testHistoryList;
-
-        testHistoryList = testDB.orderHistory(11);
-
-        System.out.println(testHistoryList);
-*/
 
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));

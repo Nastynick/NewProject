@@ -15,11 +15,11 @@ public class DBSingleton {
     private static Statement connection;
 
     DBSingleton() {
-        db_url = "jdbc:mysql://46.101.143.158";
+        db_url = "jdbc:mysql://den1.mysql6.gear.host";
         db_port = "3306";
-        db_name = "Shop";
-        db_user = "carl";
-        db_password = "dragoncave";
+        db_name = "dragoncave";
+        db_user = "dragoncave";
+        db_password = "Xt7q~d!0cPTi";
         connection = setConnection();
     }
 

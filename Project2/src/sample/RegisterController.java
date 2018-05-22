@@ -11,8 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.Model.DBConnection;
-import sample.Model.User;
 import javafx.util.converter.IntegerStringConverter;
 
 
@@ -62,7 +60,6 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField emailField;
 
-    private DBConnection dbc = new DBConnection();
     private String error = "";
 
     @FXML
@@ -80,8 +77,8 @@ public class RegisterController implements Initializable {
     private void register(ActionEvent event) throws Exception {
         if (errorCheck()) {
             try {
-                User user = new User();
-                dbc.insertUser(user); // adds a user to the database with the values you insert into the variable user - Niclas
+                //User user = new User();
+                //dbc.insertUser(user); // adds a user to the database with the values you insert into the variable user - Niclas
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
@@ -127,11 +124,11 @@ public class RegisterController implements Initializable {
     private boolean errorCheck () { // method for errorhandling login - Niclas
         int usernamecheck = 0;
 
-        for (User s : dbc.userList("")) {
+/*        for (User s : dbc.userList("")) {
             if (usernameField.getText().equals(s.getUserName())) {
                 usernamecheck = 1;
             }
-        }
+        }*/
         if (ageField.getText().equals("")) {
             ageField.setText("0");
         }
@@ -153,7 +150,7 @@ public class RegisterController implements Initializable {
         return passwordField.getLength() >= 3 && passwordField.getText().equals(confirmPasswordField.getText()) && usernameField.getLength() > 0 && usernamecheck != 1 && firstNameField.getLength() > 0 && surNameField.getLength() > 0 && addressField.getLength() > 0 && emailField.getLength() > 0 && phoneNumberField.getLength() > 0 && ageField.getLength() > 0 && Integer.valueOf(ageField.getText()) >= 13;
     }
     private void startUp() throws Exception {
-        dbc.Connect();
+        //dbc.Connect();
         UnaryOperator<TextFormatter.Change> integerFilter = change -> {
             String newText = change.getControlNewText();
 

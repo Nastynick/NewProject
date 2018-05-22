@@ -22,7 +22,6 @@ public class MainMenu implements Initializable {
 
     DBSingleton test = DBSingleton.getInstance();
     TestingClass tc = new TestingClass();
-    DBConnection dbc = new DBConnection();
 
     @FXML
     private Button viewCart;
@@ -168,7 +167,7 @@ public class MainMenu implements Initializable {
     }
 
     private void startUp () throws Exception {
-        dbc.Connect();
+        //dbc.Connect();
         df.setRoundingMode(RoundingMode.UP);
         itemTableView.setRowFactory(tv -> {
             TableRow<Item> row = new TableRow<>();
@@ -194,7 +193,7 @@ public class MainMenu implements Initializable {
         cartPpriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         cartPnameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
 
-        ObservableList<Item> itemData = FXCollections.observableArrayList(dbc.itemList(""));
+        ObservableList<Item> itemData = FXCollections.observableArrayList(new ArrayList<>());
         itemTableView.setItems(itemData);
         cartPreviewData = FXCollections.observableArrayList(cartP);
 

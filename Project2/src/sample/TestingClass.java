@@ -1,6 +1,5 @@
 package sample;
 
-import sample.Model.User;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -13,12 +12,7 @@ public class TestingClass {
 
     public ArrayList<User> getUsers() throws Exception {
         ArrayList<User> users = new ArrayList<>();
-        User user = new User ();
-        User user2 = new User ();
-        User user3 = new User ();
-        users.add(user);
-        users.add(user2);
-        users.add(user3);
+
         return users;
     }
 
@@ -62,9 +56,5 @@ public class TestingClass {
         return olderOrder;
     }
 
-    public User testingAccountInformation () {
-        //return aUser;
-
-    }
 
 }

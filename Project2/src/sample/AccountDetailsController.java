@@ -65,7 +65,6 @@ public class AccountDetailsController {
 
 
     private ArrayList<Item> temp = new ArrayList<>();
-    private DBConnection dbc = new DBConnection();
     private ArrayList<User> localUserList = new ArrayList<>();
 
     @FXML
@@ -99,19 +98,19 @@ public class AccountDetailsController {
 
     }
     public void setData (ArrayList<Item> list) {
-        dbc.Connect();
+        //dbc.Connect();
         temp = list;
-        for (User e : dbc.userList("")) {
+/*        for (User e : dbc.userList("")) {
             System.out.println(e.getUserName());
             firstNameField.setText(e.getFirstname());
-            lastNameField.setText(e.getLastname());
+                lastNameField.setText(e.getLastname());
             ageField.setText(String.valueOf(e.getAge()));
             phoneNumberField.setText(e.getPassWord());
             addressField.setText(e.getAddress());
             emailField.setText(e.getEmail());
             genderChoiceBox.setText(e.getGender());
             oldPasswordField.setText(e.getPassWord());
-        }
+        }*/
 
 
     }

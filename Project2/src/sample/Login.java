@@ -14,7 +14,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.Model.DBConnection;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,9 +38,6 @@ public class Login {
 
 
 
-    private DBConnection dbConnection;
-
-
     @FXML
     private void onLoginButtonPressed(ActionEvent event) throws Exception {
         login(event);
@@ -54,9 +50,9 @@ public class Login {
 
 
     private void login (ActionEvent event) throws Exception {
-        boolean flag;
-        dbConnection = new DBConnection();
-        flag = dbConnection.login(userNameField.getText(),passwordField.getText());
+        boolean flag = true;
+/*        dbConnection = new DBConnection();
+        flag = dbConnection.login(userNameField.getText(),passwordField.getText());*/
 
         // System.out.println("flag: "+flag);
 
