@@ -48,17 +48,9 @@ public class AccountDetailsController {
     @FXML
     private PasswordField newPasswordField;
 
-    @FXML
-    private TextField genderChoiceBox;
 
     @FXML
     private TextField ageField;
-
-    @FXML
-    private TextField employeeIDField;
-
-    @FXML
-    private Label salaryLabel;
 
     @FXML
     private TextField adminIDField;

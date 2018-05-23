@@ -37,9 +37,6 @@ public class RegisterController implements Initializable {
     private TextField phoneNumberField;
 
     @FXML
-    private ChoiceBox<String> genderSelect;
-
-    @FXML
     private TextField confirmPasswordField;
 
     @FXML
@@ -163,10 +160,6 @@ public class RegisterController implements Initializable {
         ageField.setTextFormatter(
                 new TextFormatter<>(new IntegerStringConverter(), null, integerFilter));
 
-        genderSelect.getItems().add("Male");
-        genderSelect.getItems().add("Female");
-        genderSelect.getItems().add("Other");
-        genderSelect.getSelectionModel().selectFirst();
-    }
+            }
 }
 
