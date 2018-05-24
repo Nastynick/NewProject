@@ -36,6 +36,8 @@
             <Button fx:id="loginButton" layoutX="374.0" layoutY="408.0" mnemonicParsing="false" onAction="#onLoginButtonPressed" prefHeight="25.0" prefWidth="64.0" text="Login" />
             <Label fx:id="statusLabel" layoutX="289.0" layoutY="271.0" prefHeight="17.0" prefWidth="149.0" />
             <Label layoutX="232.0" layoutY="512.0" />
+            <Button fx:id="forgottenUsernameButton" alignment="CENTER" layoutX="14.0" layoutY="554.0" mnemonicParsing="false" onAction="#onForgottenPasswordPressed" prefHeight="25.0" prefWidth="131.0" text="Forgotten Password?" />
+            <Button fx:id="forgottenPasswordButton" alignment="CENTER" layoutX="14.0" layoutY="521.0" mnemonicParsing="false" onAction="#onForgottenUsernamePressed" text="Forgotten Username?" />
             </children>
         </AnchorPane>
     </children>

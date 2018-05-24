@@ -36,6 +36,12 @@ public class Login {
     @FXML
     private Label statusLabel;
 
+    @FXML
+    private Button forgottenUsernameButton;
+
+    @FXML
+    private Button forgottenPasswordButton;
+
 
 
     @FXML
@@ -76,5 +82,28 @@ public class Login {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
+
+    @FXML
+    private void onForgottenPasswordPressed(ActionEvent event) throws Exception {
+        recoveryChangeScene(event, 2);
+    }
+
+    @FXML
+    private void onForgottenUsernamePressed(ActionEvent event) throws Exception {
+        recoveryChangeScene(event,1);
+    }
+
+    private void recoveryChangeScene (ActionEvent event, int selection) throws Exception {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("recoveryPage.fxml"));
+        Parent root = loader.load();
+        RecoveryController rc = loader.getController();
+        rc.setData(selection);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
 
 }

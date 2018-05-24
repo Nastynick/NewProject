@@ -75,13 +75,13 @@ public class DBSingleton {
             assert conn != null;
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, user.getUserName());
-            pst.setString(2, user.getFirstname());
-            pst.setString(3, user.getLastname());
-            pst.setString(4, user.getPassWord());
-            pst.setString(5, user.getEmail());
-            pst.setString(6, user.getAddress());
-            pst.setString(7, user.getPhoneNumber());
-            pst.setInt(8, user.getAge());
+            pst.setString(3, user.getFirstname());
+            pst.setString(4, user.getLastname());
+            pst.setString(2, user.getPassWord());
+            pst.setString(8, user.getEmail());
+            pst.setString(7, user.getAddress());
+            pst.setString(6, user.getPhoneNumber());
+            pst.setInt(5, user.getAge());
 
             pst.execute();
 
@@ -134,9 +134,9 @@ public class DBSingleton {
             assert conn != null;
             PreparedStatement pst = conn.prepareStatement(query);
             if (searchmethod == 2) {
-                pst.setString(1,search);
+                pst.setString(1,"%"+ search + "%");
             } else if (searchmethod == 3) {
-                pst.setString(1,"%" + search + "%");
+                pst.setString(1,search);
             }
             ResultSet result = pst.executeQuery();
             while (result.next()) {
