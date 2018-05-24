@@ -124,6 +124,8 @@ public class DBSingleton {
             case 3:
                 query = "SELECT * FROM user WHERE username = ?";
                 break;
+            case 4:
+                query = "SELECT * FROM user WHERE email = ?";
             default:
                 break;
         }
@@ -135,7 +137,7 @@ public class DBSingleton {
             PreparedStatement pst = conn.prepareStatement(query);
             if (searchmethod == 2) {
                 pst.setString(1,"%"+ search + "%");
-            } else if (searchmethod == 3) {
+            } else if (searchmethod == 3 || searchmethod == 4) {
                 pst.setString(1,search);
             }
             ResultSet result = pst.executeQuery();

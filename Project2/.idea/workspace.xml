@@ -108,14 +108,14 @@
       <file leaf-file-name="RecoveryController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/RecoveryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2239">
-              <caret line="148" column="81" lean-forward="false" selection-start-line="148" selection-start-column="81" selection-end-line="148" selection-end-column="81" />
+            <state relative-caret-position="167">
+              <caret line="173" column="56" lean-forward="false" selection-start-line="173" selection-start-column="56" selection-end-line="173" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4222#4456#0" expanded="true" />
-                <element signature="e#4455#4456#0" expanded="true" />
-                <element signature="e#5186#5187#0" expanded="true" />
-                <element signature="e#5222#5223#0" expanded="true" />
+                <element signature="e#4976#5210#0" expanded="true" />
+                <element signature="e#5209#5210#0" expanded="true" />
+                <element signature="e#5973#5974#0" expanded="true" />
+                <element signature="e#6009#6010#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -176,8 +176,8 @@
       <file leaf-file-name="DBSingleton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/DBSingleton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="83" column="24" lean-forward="false" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="24" />
+            <state relative-caret-position="283">
+              <caret line="139" column="61" lean-forward="false" selection-start-line="139" selection-start-column="61" selection-end-line="139" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -830,17 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="848">
-          <caret line="85" column="39" lean-forward="false" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
-          <folding>
-            <element signature="e#1825#1826#0" expanded="true" />
-            <element signature="e#1871#1872#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MainMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -861,10 +850,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="848">
+          <caret line="85" column="39" lean-forward="false" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+          <folding>
+            <element signature="e#1825#1826#0" expanded="true" />
+            <element signature="e#1871#1872#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBSingleton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="83" column="24" lean-forward="false" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="24" />
+        <state relative-caret-position="283">
+          <caret line="139" column="61" lean-forward="false" selection-start-line="139" selection-start-column="61" selection-end-line="139" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -873,14 +873,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/RecoveryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2239">
-          <caret line="148" column="81" lean-forward="false" selection-start-line="148" selection-start-column="81" selection-end-line="148" selection-end-column="81" />
+        <state relative-caret-position="167">
+          <caret line="173" column="56" lean-forward="false" selection-start-line="173" selection-start-column="56" selection-end-line="173" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4222#4456#0" expanded="true" />
-            <element signature="e#4455#4456#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5222#5223#0" expanded="true" />
+            <element signature="e#4976#5210#0" expanded="true" />
+            <element signature="e#5209#5210#0" expanded="true" />
+            <element signature="e#5973#5974#0" expanded="true" />
+            <element signature="e#6009#6010#0" expanded="true" />
           </folding>
         </state>
       </provider>
