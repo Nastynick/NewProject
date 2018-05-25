@@ -65,8 +65,8 @@ public class RecoveryController implements Initializable {
     private int stage = 1;
     private int selectionmode;
     private DBSingleton dbc = new DBSingleton();
-    SecureRandom random = new SecureRandom();
-    int nr;
+    private SecureRandom random = new SecureRandom();
+    private int nr;
 
     @FXML
     private void onConfirmButtonPressed(ActionEvent event) {
@@ -85,7 +85,6 @@ public class RecoveryController implements Initializable {
 
         if (!username_email_Field.getText().equals("") && selectionmode == 2) {
             ArrayList<User> ul = dbc.getUserList(username_email_Field.getText(),3);
-            System.out.println(ul);
             if (!ul.isEmpty()) {
                 User u = ul.get(0);
                 nr = random.nextInt(21475);
@@ -105,6 +104,23 @@ public class RecoveryController implements Initializable {
                 infoLabel.setText("No user found!");
             }
 
+        } else if (selectionmode == 2) {
+            infoLabel.setText("Field empty!");
+        }
+        if (! username_email_Field.getText().equals("") && selectionmode == 1) {
+            ArrayList<User> ul = dbc.getUserList(username_email_Field.getText(),4);
+            if (!ul.isEmpty()) {
+                User u = ul.get(0);
+                try {
+                    mailSetup(u);
+                    infoLabel.setText("An email has been sent with the registered username of this address!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                infoLabel.setText("Email is not registered with any user!");
+            }
+
         } else {
             infoLabel.setText("Field empty!");
         }
@@ -121,6 +137,8 @@ public class RecoveryController implements Initializable {
             recoveryCodeField.setEditable(false);
             confirmButton.setVisible(true);
             infoLabel.setText("Verification confirmed, please set your new password below!");
+        } else {
+            infoLabel.setText("Wrong code!");
         }
     }
 
@@ -151,9 +169,11 @@ public class RecoveryController implements Initializable {
 
             message.setSubject("The Dragon Cave: Forgotten username/password!");
 
-            switch (selectionmode) {
-                case 1: message.setText("Here is your username" + user.getUserName());
-                case 2: message.setText("Here is your recovery code: " + nr);
+
+            if (selectionmode == 1) {
+                message.setText("Here is your username: " + user.getUserName());
+            } else if (selectionmode == 2) {
+                message.setText("Here is your recovery code: " + nr);
             }
             Transport.send(message);
 
