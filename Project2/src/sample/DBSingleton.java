@@ -111,6 +111,25 @@ public class DBSingleton {
             e.printStackTrace();
         }
     }
+    void alterUser (User u, int operationMethod) {
+        String query = null;
+        switch (operationMethod) {
+            case 1:
+                query = "DELETE FROM user WHERE username = ?";
+                break;
+        }
+        try {
+            Connection conn = setConnection();
+            assert conn != null;
+            PreparedStatement pst = conn.prepareStatement(query);
+            if (operationMethod == 1) {
+                pst.setString(1,u.getUserName());
+            }
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     ArrayList<User> getUserList(String search, int searchmethod) {
             String query = null;

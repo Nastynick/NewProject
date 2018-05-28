@@ -16,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -203,6 +202,9 @@ public class AdminController implements Initializable {
             if (itemsRadioB.isSelected()) {
                 Item item = new Item(Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(), Double.valueOf(price_lastnameField.getText()), Integer.valueOf(stock_emailField.getText()), "Test", address_ImageURL_Field.getText());
                 dbc.alterItem(item, 1);
+            } else if (usersRadioB.isSelected()) {
+                User u = new User(itemID_UsernameField.getText(),passwordField.getText(), address_ImageURL_Field.getText(),stock_emailField.getText(),itemname_firstnameField.getText(),price_lastnameField.getText(),Integer.valueOf(ageField.getText()),phoneNumberField.getText());
+                dbc.alterUser(u,1);
             }
 
         }
