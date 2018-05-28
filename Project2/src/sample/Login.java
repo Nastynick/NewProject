@@ -60,6 +60,10 @@ public class Login {
     private void login (ActionEvent event) throws Exception {
         if (!userNameField.getText().equals("") && !passwordField.getText().equals("")) {
             if (dbc.login(userNameField.getText(),passwordField.getText())) {
+                UserSingleton.getInstance().setAdmin(dbc.adminCheck(userNameField.getText()));
+                UserSingleton.getInstance().setUsername(userNameField.getText());
+                System.out.println(UserSingleton.getInstance().getUsername());
+                System.out.println(UserSingleton.getInstance().isAdmin());
                 changeScene("mainMenu.fxml",event);
             } else {
                 statusLabel.setTextFill(Color.web("#eb0000"));

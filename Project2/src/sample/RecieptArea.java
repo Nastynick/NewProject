@@ -14,10 +14,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class RecieptArea implements Initializable {
+
 
 
     @FXML
@@ -44,6 +46,8 @@ public class RecieptArea implements Initializable {
 
     @FXML
     private void exitButtonPressed(ActionEvent event) throws Exception {
+        UserSingleton.getInstance().setAdmin(false);
+        UserSingleton.getInstance().setUsername(null);
         changeScene("login.fxml", event);
     }
 
@@ -74,9 +78,12 @@ public class RecieptArea implements Initializable {
         boughtItemField.setText("Thank you for your order " + o.getUserName()+ "!" + "\nOrderID: " + o.getOrderID() + "\nStatus: "
                 + o.getStatus() + "\nOrder date: " + o.getOrderDate()+ "\nShipped Date:" + o.getShippedDate() +"\nAdditional Comment:"
                 + o.getComment() + "\n\nItems purchased: \n" + boughtList + "\nTOTAL COST: " + df.format(price));
-        //mailSetup();
+        DBSingleton dbc = new DBSingleton();
+        ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(),5);
+        User u = ul.get(0);
+        mailSetup(u.getEmail());
     }
-    private void mailSetup () {
+    private void mailSetup (String email) {
         final String username = "dragoncaveproject2";
         final String password = "GlassGlassIcecream";
         Properties props = new Properties();
@@ -95,7 +102,7 @@ public class RecieptArea implements Initializable {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("dragoncaveproject2@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(""));
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
             message.setSubject("Thank you for the purchase! Order ID: " + o.getOrderID());
             message.setText(boughtItemField.getText());
             Transport.send(message);

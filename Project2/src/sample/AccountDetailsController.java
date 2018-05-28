@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class AccountDetailsController {
 
-    private TestingClass tc = new TestingClass();
 
     private Alert error = new Alert(Alert.AlertType.ERROR);
     private Alert inform = new Alert(Alert.AlertType.INFORMATION);
@@ -70,7 +69,7 @@ public class AccountDetailsController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
-        }
+    }
 
     @FXML
     private void updateButtonPressed(ActionEvent event) {
@@ -89,22 +88,22 @@ public class AccountDetailsController {
         }
 
     }
-    public void setData (ArrayList<Item> list) {
-        //dbc.Connect();
+
+    public void setData(ArrayList<Item> list) {
         temp = list;
-/*        for (User e : dbc.userList("")) {
-            System.out.println(e.getUserName());
-            firstNameField.setText(e.getFirstname());
-                lastNameField.setText(e.getLastname());
-            ageField.setText(String.valueOf(e.getAge()));
-            phoneNumberField.setText(e.getPassWord());
-            addressField.setText(e.getAddress());
-            emailField.setText(e.getEmail());
-            genderChoiceBox.setText(e.getGender());
-            oldPasswordField.setText(e.getPassWord());
-        }*/
+        System.out.println(UserSingleton.getInstance().getUsername());
+        DBSingleton dbc = new DBSingleton();
+        ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 5);
+        User e = ul.get(0);
+        System.out.println(e.getUserName());
+        firstNameField.setText(e.getFirstname());
+        lastNameField.setText(e.getLastname());
+        ageField.setText(String.valueOf(e.getAge()));
+        phoneNumberField.setText(e.getPassWord());
+        addressField.setText(e.getAddress());
+        emailField.setText(e.getEmail());
+        oldPasswordField.setText(e.getPassWord());
 
 
     }
-
 }

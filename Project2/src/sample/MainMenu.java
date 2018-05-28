@@ -103,7 +103,8 @@ public class MainMenu implements Initializable {
 
     @FXML
     void logOutButtonPressed(ActionEvent event) throws Exception {
-        // close db connection here and clear any variables that might have been used
+        UserSingleton.getInstance().setAdmin(false);
+        UserSingleton.getInstance().setUsername(null);
         changeScene("login.fxml", event);
 
     }
@@ -223,6 +224,10 @@ public class MainMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        adminButton.setVisible(false);
+        if (UserSingleton.getInstance().isAdmin()) {
+            adminButton.setVisible(true);
+        }
         try {
             startUp();
         } catch (Exception e) {

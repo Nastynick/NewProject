@@ -126,6 +126,9 @@ public class DBSingleton {
                 break;
             case 4:
                 query = "SELECT * FROM user WHERE email = ?";
+                break;
+            case 5:
+                query = "SELECT * FROM user WHERE username = ?";
             default:
                 break;
         }
@@ -137,7 +140,7 @@ public class DBSingleton {
             PreparedStatement pst = conn.prepareStatement(query);
             if (searchmethod == 2) {
                 pst.setString(1,"%"+ search + "%");
-            } else if (searchmethod == 3 || searchmethod == 4) {
+            } else if (searchmethod == 3 || searchmethod == 4 || searchmethod == 5) {
                 pst.setString(1,search);
             }
             ResultSet result = pst.executeQuery();
@@ -206,6 +209,19 @@ public class DBSingleton {
         }
         return password_from_DB != null && password_from_DB.equals(password);    }
 
+        public boolean adminCheck (String username) throws SQLException {
+            String admin = null;
+            Connection conn = setConnection();
+            assert conn != null;
+            String query = "SELECT adminID FROM admin WHERE user_username = ?";
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1, username);
+            ResultSet result = pst.executeQuery();
+            while (result.next()){
+                admin = result.getString("adminID");
+            }
+            return !(admin == null);
+        }
 
     @Override
     public String toString() {
