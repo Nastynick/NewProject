@@ -93,7 +93,7 @@ public class AccountDetailsController {
         temp = list;
         System.out.println(UserSingleton.getInstance().getUsername());
         DBSingleton dbc = new DBSingleton();
-        ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 5);
+        ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 3);
         User e = ul.get(0);
         System.out.println(e.getUserName());
         firstNameField.setText(e.getFirstname());

@@ -79,7 +79,7 @@ public class RecieptArea implements Initializable {
                 + o.getStatus() + "\nOrder date: " + o.getOrderDate()+ "\nShipped Date:" + o.getShippedDate() +"\nAdditional Comment:"
                 + o.getComment() + "\n\nItems purchased: \n" + boughtList + "\nTOTAL COST: " + df.format(price));
         DBSingleton dbc = new DBSingleton();
-        ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(),5);
+        ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(),3);
         User u = ul.get(0);
         mailSetup(u.getEmail());
     }

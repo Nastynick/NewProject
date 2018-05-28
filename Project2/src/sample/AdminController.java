@@ -223,14 +223,15 @@ public class AdminController implements Initializable {
 
     @FXML
     private void onUpdateButtonpressed(ActionEvent event) throws Exception {
-        if (itemsRadioB.isSelected()) {
-            //Item item = new Item("")
-            //dbc.updateItem(item)
+        if (itemsRadioB.isSelected() && !itemID_UsernameField.getText().equals("")) {
+            Item item = new Item(Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(), Double.valueOf(price_lastnameField.getText()), Integer.valueOf(stock_emailField.getText()), productdescField.getText(), address_ImageURL_Field.getText());
+            dbc.alterItem(item,2);
 
-        } else if (usersRadioB.isSelected()) {
-            //User user = new User("")
-            //dbc.updateUser(user)
+        } else if (usersRadioB.isSelected() && !itemID_UsernameField.getText().equals("")) {
+            User u = new User(itemID_UsernameField.getText(),passwordField.getText(), address_ImageURL_Field.getText(),stock_emailField.getText(),itemname_firstnameField.getText(),price_lastnameField.getText(),Integer.valueOf(ageField.getText()),phoneNumberField.getText());
+            dbc.alterUser(u,2);
         }
+        updateTables();
     }
 
     public void radioSelect(ActionEvent event) throws Exception {

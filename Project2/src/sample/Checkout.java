@@ -65,7 +65,7 @@ public class Checkout implements Initializable{
     @FXML
     private void confirmButtonPressed(ActionEvent event) throws Exception {
         if (!itemlist.isEmpty()) {
-            Order o = new Order(getRandomNr(),"Not Shipped","N/A","",getTime(),"placeholder",itemlist);
+            Order o = new Order(getRandomNr(),"Not Shipped","N/A","",getTime(),UserSingleton.getInstance().getUsername(),itemlist);
             //dbc.newOrder
 
             Node node = (Node) event.getSource();

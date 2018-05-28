@@ -98,6 +98,8 @@ public class DBSingleton {
             case 1:
                 query = "DELETE FROM item WHERE iditem = ?";
                 break;
+            case 2:
+                query = "UPDATE item SET itemsname = ?, price = ?, stock = ?, description = ?, imageURL = ?, manufacturer_idmanufacturer = ? WHERE iditem = ?";
         }
         try {
             Connection conn = setConnection();
@@ -105,6 +107,14 @@ public class DBSingleton {
             PreparedStatement pst = conn.prepareStatement(query);
             if (operationMethod == 1) {
                 pst.setInt(1,it.getItemID());
+            } else if (operationMethod == 2) {
+                pst.setString(1,it.getItemName());
+                pst.setDouble(2,it.getPrice());
+                pst.setInt(3,it.getStock());
+                pst.setString(4,it.getDescription());
+                pst.setString(5,it.getImageURL());
+                pst.setInt(6,1);
+                pst.setInt(7,it.getItemID());
             }
             pst.execute();
         } catch (SQLException e) {
@@ -117,6 +127,8 @@ public class DBSingleton {
             case 1:
                 query = "DELETE FROM user WHERE username = ?";
                 break;
+            case 2:
+                query = "UPDATE user SET password = ?, firstname = ?, lastname = ?, age = ?, phonenumber = ?, address = ?, email = ? WHERE username = ?";
         }
         try {
             Connection conn = setConnection();
@@ -124,6 +136,15 @@ public class DBSingleton {
             PreparedStatement pst = conn.prepareStatement(query);
             if (operationMethod == 1) {
                 pst.setString(1,u.getUserName());
+            } else if (operationMethod == 2) {
+                pst.setString(1,u.getPassWord());
+                pst.setString(2,u.getFirstname());
+                pst.setString(3,u.getLastname());
+                pst.setInt(4,u.getAge());
+                pst.setString(5,u.getPhoneNumber());
+                pst.setString(6,u.getAddress());
+                pst.setString(7,u.getEmail());
+                pst.setString(8,u.getUserName());
             }
             pst.execute();
         } catch (SQLException e) {
@@ -146,8 +167,6 @@ public class DBSingleton {
             case 4:
                 query = "SELECT * FROM user WHERE email = ?";
                 break;
-            case 5:
-                query = "SELECT * FROM user WHERE username = ?";
             default:
                 break;
         }
@@ -159,7 +178,7 @@ public class DBSingleton {
             PreparedStatement pst = conn.prepareStatement(query);
             if (searchmethod == 2) {
                 pst.setString(1,"%"+ search + "%");
-            } else if (searchmethod == 3 || searchmethod == 4 || searchmethod == 5) {
+            } else if (searchmethod == 3 || searchmethod == 4) {
                 pst.setString(1,search);
             }
             ResultSet result = pst.executeQuery();
