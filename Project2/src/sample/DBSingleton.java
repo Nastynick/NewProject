@@ -193,6 +193,19 @@ public class DBSingleton {
         return itemsList;
     }
 
+    public boolean login (String username, String password) throws SQLException {
+        String password_from_DB = null;
+        Connection conn = setConnection();
+        assert conn != null;
+        String query = "SELECT password FROM user WHERE username = ?";
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, username);
+        ResultSet result = pst.executeQuery();
+        while (result.next()) {
+            password_from_DB = result.getString("password");
+        }
+        return password_from_DB != null && password_from_DB.equals(password);    }
+
 
     @Override
     public String toString() {

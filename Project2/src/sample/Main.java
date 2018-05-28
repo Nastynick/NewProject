@@ -17,7 +17,7 @@ public class Main extends Application {
 
 
         primaryStage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         primaryStage.setTitle("The Dragon's Den.exe");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

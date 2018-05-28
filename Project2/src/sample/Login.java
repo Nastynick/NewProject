@@ -42,6 +42,8 @@ public class Login {
     @FXML
     private Button forgottenPasswordButton;
 
+    private DBSingleton dbc = new DBSingleton();
+
 
 
     @FXML
@@ -56,18 +58,18 @@ public class Login {
 
 
     private void login (ActionEvent event) throws Exception {
-        boolean flag = true;
-/*        dbConnection = new DBConnection();
-        flag = dbConnection.login(userNameField.getText(),passwordField.getText());*/
-
-        // System.out.println("flag: "+flag);
-
-        if (flag) {  //Demo code, will not be present in the final product and will be handled by DBconnection instead, along with any other database related stuff.
-            changeScene("mainMenu.fxml",event);
+        if (!userNameField.getText().equals("") && !passwordField.getText().equals("")) {
+            if (dbc.login(userNameField.getText(),passwordField.getText())) {
+                changeScene("mainMenu.fxml",event);
+            } else {
+                statusLabel.setTextFill(Color.web("#eb0000"));
+                statusLabel.setText("Invalid username/password");
+            }
         } else {
             statusLabel.setTextFill(Color.web("#eb0000"));
-            statusLabel.setText("Invalid username/password");
+            statusLabel.setText("Fields empty!");
         }
+
     }
 
     public void setData(String registerMsg) throws Exception {
