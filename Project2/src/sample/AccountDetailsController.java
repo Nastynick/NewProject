@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class AccountDetailsController {
 
+    DBSingleton dbc = new DBSingleton();
 
     private Alert error = new Alert(Alert.AlertType.ERROR);
     private Alert inform = new Alert(Alert.AlertType.INFORMATION);
@@ -47,6 +48,9 @@ public class AccountDetailsController {
     @FXML
     private PasswordField newPasswordField;
 
+    @FXML
+    private TextField userNameField;
+
 
     @FXML
     private TextField ageField;
@@ -78,12 +82,18 @@ public class AccountDetailsController {
             inform.setTitle("Account information");
             inform.setHeaderText("Account information update");
             inform.setContentText("Account information has been updated! Have a nice day!");
+
+            User user = new User(userNameField.getText(),  newPasswordField.getText(), addressField.getText(),emailField.getText(), firstNameField.getText(), lastNameField.getText(), Integer.valueOf(ageField.getText()), phoneNumberField.getText());
+            dbc.alterUser(user, 2);
+
             inform.showAndWait();
+
+
 
         } else {
             error.setTitle("Update error!");
             error.setHeaderText("Password mismatch");
-            error.setContentText("Failed to update account information! Please make sure so your old password and new password match if you want to change password and user information");
+            error.setContentText("Failed to update account information! Please make sure so you confirm passwords if you want to change and user information");
             error.showAndWait();
         }
 
@@ -96,10 +106,11 @@ public class AccountDetailsController {
         ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 3);
         User e = ul.get(0);
         System.out.println(e.getUserName());
+        userNameField.setText(e.getUserName());
         firstNameField.setText(e.getFirstname());
         lastNameField.setText(e.getLastname());
         ageField.setText(String.valueOf(e.getAge()));
-        phoneNumberField.setText(e.getPassWord());
+        phoneNumberField.setText(e.getPhoneNumber());
         addressField.setText(e.getAddress());
         emailField.setText(e.getEmail());
         oldPasswordField.setText(e.getPassWord());

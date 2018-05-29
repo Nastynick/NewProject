@@ -24,16 +24,16 @@
             <children>
             <Button fx:id="updateButton" layoutX="585.0" layoutY="535.0" mnemonicParsing="false" onAction="#updateButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Update" />
             <Button fx:id="cancelButton" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Cancel" />
-            <Label fx:id="updateLabel" alignment="CENTER" layoutX="213.0" layoutY="535.0" prefHeight="44.0" prefWidth="301.0" />
+            <Label fx:id="updateLabel" alignment="CENTER" layoutX="151.0" layoutY="535.0" prefHeight="44.0" prefWidth="418.0" text="Reminder: Confirm your password to update user information" />
             <ImageView fitHeight="127.0" fitWidth="127.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@logo.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="38.0" layoutY="121.0" prefHeight="44.0" prefWidth="80.0" text="First Name" />
-            <Label alignment="CENTER" layoutX="38.0" layoutY="178.0" prefHeight="44.0" prefWidth="80.0" text="Last Name" />
-            <TextField fx:id="firstNameField" layoutX="132.0" layoutY="131.0" />
-            <TextField fx:id="lastNameField" layoutX="133.0" layoutY="188.0" />
+            <Label alignment="CENTER" layoutX="49.0" layoutY="179.0" prefHeight="44.0" prefWidth="80.0" text="First Name" />
+            <Label alignment="CENTER" layoutX="49.0" layoutY="228.0" prefHeight="44.0" prefWidth="80.0" text="Last Name" />
+            <TextField fx:id="firstNameField" layoutX="157.0" layoutY="190.0" prefHeight="25.0" prefWidth="169.0" />
+            <TextField fx:id="lastNameField" layoutX="157.0" layoutY="237.0" prefHeight="25.0" prefWidth="169.0" />
             <Label alignment="CENTER" layoutX="207.0" layoutY="42.0" prefHeight="56.0" prefWidth="301.0" text="Account Information">
                <font>
                   <Font size="25.0" />
@@ -44,20 +44,22 @@
                   <Image url="@logo.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="38.0" layoutY="241.0" prefHeight="44.0" prefWidth="80.0" text="Address" />
-            <Label alignment="CENTER" layoutX="27.0" layoutY="297.0" prefHeight="44.0" prefWidth="102.0" text="Phone Number" />
-            <TextField fx:id="addressField" layoutX="132.0" layoutY="251.0" />
-            <TextField fx:id="phoneNumberField" layoutX="132.0" layoutY="307.0" />
-            <Label alignment="CENTER" layoutX="302.0" layoutY="122.0" prefHeight="44.0" prefWidth="80.0" text="Email" />
-            <TextField fx:id="emailField" layoutX="382.0" layoutY="132.0" />
-            <Label alignment="CENTER" layoutX="302.0" layoutY="179.0" prefHeight="44.0" prefWidth="80.0" text="Age" />
-            <Label alignment="CENTER" layoutX="302.0" layoutY="242.0" prefHeight="44.0" prefWidth="80.0" text="Admin ID" />
+            <Label alignment="CENTER" layoutX="49.0" layoutY="276.0" prefHeight="44.0" prefWidth="80.0" text="Address" />
+            <Label alignment="CENTER" layoutX="38.0" layoutY="332.0" prefHeight="44.0" prefWidth="102.0" text="Phone Number" />
+            <TextField fx:id="addressField" layoutX="157.0" layoutY="285.0" prefHeight="25.0" prefWidth="169.0" />
+            <TextField fx:id="phoneNumberField" layoutX="157.0" layoutY="341.0" prefHeight="25.0" prefWidth="169.0" />
+            <Label alignment="CENTER" layoutX="324.0" layoutY="180.0" prefHeight="44.0" prefWidth="80.0" text="Email" />
+            <TextField fx:id="emailField" layoutX="423.0" layoutY="189.0" prefHeight="25.0" prefWidth="169.0" />
+            <Label alignment="CENTER" layoutX="324.0" layoutY="228.0" prefHeight="44.0" prefWidth="80.0" text="Age" />
+            <Label alignment="CENTER" layoutX="323.0" layoutY="275.0" prefHeight="44.0" prefWidth="80.0" text="Admin ID" />
             <Label alignment="CENTER" layoutX="180.0" layoutY="368.0" prefHeight="44.0" prefWidth="102.0" text="New Password" />
-            <Label alignment="CENTER" layoutX="435.0" layoutY="368.0" prefHeight="44.0" prefWidth="102.0" text="Old Password" />
-            <TextField fx:id="ageField" editable="false" layoutX="382.0" layoutY="189.0" prefHeight="25.0" prefWidth="80.0" />
-            <TextField fx:id="adminIDField" editable="false" layoutX="382.0" layoutY="251.0" prefHeight="25.0" prefWidth="80.0" />
+            <Label alignment="CENTER" layoutX="435.0" layoutY="368.0" prefHeight="44.0" prefWidth="102.0" text="Confirm Password" />
+            <TextField fx:id="ageField" editable="false" layoutX="457.0" layoutY="237.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField fx:id="adminIDField" editable="false" layoutX="457.0" layoutY="285.0" prefHeight="25.0" prefWidth="80.0" />
             <PasswordField fx:id="newPasswordField" layoutX="157.0" layoutY="422.0" />
             <PasswordField fx:id="oldPasswordField" layoutX="412.0" layoutY="422.0" />
+            <TextField fx:id="userNameField" alignment="CENTER" editable="false" layoutX="202.0" layoutY="141.0" prefHeight="25.0" prefWidth="311.0" />
+            <Label alignment="CENTER" layoutX="232.0" layoutY="109.0" prefHeight="25.0" prefWidth="247.0" text="Username" />
             </children>
         </AnchorPane>
     </children>
