@@ -14,9 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class RecieptArea implements Initializable {
 
@@ -79,6 +77,9 @@ public class RecieptArea implements Initializable {
                 + o.getStatus() + "\nOrder date: " + o.getOrderDate()+ "\nShipped Date:" + o.getShippedDate() +"\nAdditional Comment:"
                 + o.getComment() + "\n\nItems purchased: \n" + boughtList + "\nTOTAL COST: " + df.format(price));
         DBSingleton dbc = new DBSingleton();
+
+
+        dbc.insertOrder(o);
         ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(),3);
         User u = ul.get(0);
         mailSetup(u.getEmail());

@@ -4,6 +4,7 @@ public class UserSingleton {
         private static UserSingleton myUser;
         private String username;
         private boolean admin;
+
     private UserSingleton() {
 
     }
@@ -29,4 +30,5 @@ public class UserSingleton {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
 }

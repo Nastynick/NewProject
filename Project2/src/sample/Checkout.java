@@ -65,7 +65,7 @@ public class Checkout implements Initializable{
     @FXML
     private void confirmButtonPressed(ActionEvent event) throws Exception {
         if (!itemlist.isEmpty()) {
-            Order o = new Order(getRandomNr(),"Not Shipped","N/A","",getTime(),UserSingleton.getInstance().getUsername(),itemlist);
+            Order o = new Order(getRandomNr(),"Not Shipped","N/A","B",getTime(),UserSingleton.getInstance().getUsername(),itemlist);
             //dbc.newOrder
 
             Node node = (Node) event.getSource();
@@ -96,7 +96,8 @@ public class Checkout implements Initializable{
 
     private String getTime () throws Exception {
         ZonedDateTime now = ZonedDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd kk:mm:ss OOOO");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+        //  kk:mm:ss OOOO
         return now.format(formatter);
     }
     private int getRandomNr() throws Exception {

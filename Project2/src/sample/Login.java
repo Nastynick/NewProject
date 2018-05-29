@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Login {
+public class Login implements Initializable {
 
     @FXML
     private TextField userNameField;
@@ -112,4 +112,7 @@ public class Login {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 }

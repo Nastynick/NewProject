@@ -66,6 +66,15 @@ public class Item {
         this.stock = stock;
     }
 
+    public boolean equals (Object obj) {
+        boolean result = false;
+        if (obj instanceof Item) {
+            result = this.itemName.equals(((Item)obj).getItemName());
+
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Product ID: " + itemID + "\n" + itemName + "\nPrice: " + price;

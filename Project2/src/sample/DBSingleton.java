@@ -2,6 +2,9 @@ package sample;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -260,6 +263,78 @@ public class DBSingleton {
             }
             return !(admin == null);
         }
+
+        public void insertOrder (Order o) {
+            String query = "INSERT INTO dragoncave.order" + "\n" + "VALUES (?,?,?,?,?,?);";
+            try {
+
+                Connection conn = setConnection();
+                assert conn != null;
+                conn.setAutoCommit(false);
+                PreparedStatement pst = conn.prepareStatement(query);
+                pst.setInt(1, o.getOrderID());
+                pst.setString(2, o.getStatus());
+                pst.setString(3, o.getOrderDate());
+                pst.setString(4, o.getComment());
+                pst.setString(5, UserSingleton.getInstance().getUsername());
+                pst.setString(6, o.getShippedDate());
+                pst.execute();
+
+                query = "INSERT INTO order_has_item" +"\n" + "VALUES (?,?,?)";
+                pst = conn.prepareStatement(query);
+                ArrayList<Item> test = o.getItemList();
+                Set<Item> uniqueSet = new HashSet<>();
+                List<Item> dupesList = new ArrayList<>();
+
+                for (Item a : test) {
+                    if (uniqueSet.contains(a)) {
+                        dupesList.add(a);
+                    }else {
+                        uniqueSet.add(a);
+                    }
+                }
+
+                for (Item b : uniqueSet) {
+                    pst.setInt(1,o.getOrderID());
+                    pst.setInt(2,b.getItemID());
+                    pst.setInt(3,1);
+                    pst.addBatch();
+                }
+                pst.executeBatch();
+                conn.commit();
+
+                conn.setAutoCommit(true);
+                query = "UPDATE order_has_item SET quantity = ? WHERE item_iditem = ? AND order_idorder = ?";
+                pst = conn.prepareStatement(query);
+                for (Item c : dupesList) {
+
+                pst.setInt(1,searchOrder(o.getOrderID(),c.getItemID())+1);
+                pst.setInt(2,c.getItemID());
+                pst.setInt(3,o.getOrderID());
+                pst.execute();
+                }
+
+            } catch (SQLException e) {
+
+                e.printStackTrace();
+            }
+        }
+
+        public int searchOrder (int orderID, int itemID) throws SQLException {
+        String query = "SELECT quantity FROM order_has_item WHERE order_idorder = ? AND item_iditem = ?";
+        int amount = 0;
+        Connection conn = setConnection();
+            assert conn != null;
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1,orderID);
+            pst.setInt(2,itemID);
+            ResultSet result = pst.executeQuery();
+            while (result.next()) {
+                amount = result.getInt("quantity");
+            }
+            return amount;
+        }
+
 
     @Override
     public String toString() {

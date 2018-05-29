@@ -15,6 +15,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Shutdown Hook is running !");
+            System.out.println("Application Terminating ...");
+        }));
+
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         primaryStage.setTitle("The Dragon's Den.exe");
@@ -22,6 +27,7 @@ public class Main extends Application {
         primaryStage.show();
 
     }
+
 
     public static void main(String[] args) {
         launch(args);
