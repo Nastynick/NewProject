@@ -66,8 +66,6 @@ public class Checkout implements Initializable{
     private void confirmButtonPressed(ActionEvent event) throws Exception {
         if (!itemlist.isEmpty()) {
             Order o = new Order(getRandomNr(),"Not Shipped","N/A","B",getTime(),UserSingleton.getInstance().getUsername(),itemlist);
-            //dbc.newOrder
-
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckOutField.fxml"));

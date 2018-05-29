@@ -335,6 +335,57 @@ public class DBSingleton {
             return amount;
         }
 
+        public ArrayList<Order> getOrder (String username) throws SQLException {
+            ArrayList<Order> orderList = new ArrayList<>();
+            ArrayList<Item> itemlist;
+
+            String query = "SELECT * FROM dragoncave.order WHERE user_username = ?";
+            Connection conn = setConnection();
+            assert conn != null;
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1,username);
+            ResultSet result = pst.executeQuery();
+            while (result.next()) {
+               itemlist = getitemListForOrders(result.getInt("idorder"));
+                Order o = new Order(result.getInt("idorder"),result.getString("status"),result.getString("shippeddate"),result.getString("comment"),result.getString("orderdate"),result.getString("user_username"),itemlist);
+                orderList.add(o);
+            }
+        return orderList;
+    }
+
+   public ArrayList <Item> getitemListForOrders(int orderid) throws SQLException {
+        ArrayList<Item> itemlist = new ArrayList<>();
+        String query = "SELECT item_iditem, quantity FROM order_has_item WHERE order_idorder = ?";
+        Connection conn = setConnection();
+        assert conn != null;
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setInt(1,orderid);
+        ResultSet result = pst.executeQuery();
+        while (result.next()) {
+            int quantity = result.getInt("quantity");
+            Item a = returnItem(result.getInt("item_iditem"));
+            itemlist.add(a);
+            for (int i = 1; i < quantity; i++) {
+                itemlist.add(a);
+            }
+        }
+        return itemlist;
+    }
+
+    public Item returnItem (int itemID) throws SQLException {
+        Item i = null;
+        String query = "SELECT * from item WHERE iditem = ?";
+        Connection conn = setConnection();
+        assert conn != null;
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setInt(1,itemID);
+        ResultSet result = pst.executeQuery();
+        while (result.next()) {
+            i = new Item(result.getInt("iditem"),result.getString("itemsname"),result.getDouble("price"),result.getInt("stock"),result.getString("description"),result.getString("imageURL"));
+        }
+        return i;
+    }
+
 
     @Override
     public String toString() {

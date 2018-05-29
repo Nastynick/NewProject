@@ -51,6 +51,7 @@ public class OrderHistory implements Initializable{
     private TextArea currentOrderTextArea;
 
     private ArrayList<Item> temp = new ArrayList<>();
+    DBSingleton dbc = new DBSingleton();
 
     @FXML
     private void onReturnButtonPressed(ActionEvent event) throws Exception {
@@ -71,7 +72,7 @@ public class OrderHistory implements Initializable{
     private void startUp () throws Exception {
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
         dayOfPurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
-        ObservableList<Order> oldOrders = FXCollections.observableArrayList();
+        ObservableList<Order> oldOrders = FXCollections.observableArrayList(dbc.getOrder(UserSingleton.getInstance().getUsername()));
         orderHIstoryTable.setItems(oldOrders);
 
 
