@@ -171,9 +171,17 @@ public class RecoveryController implements Initializable {
 
 
             if (selectionmode == 1) {
-                message.setText("Here is your username: " + user.getUserName());
+                message.setSubject("The Dragon Cave: Forgotten Username");
+                message.setText("Hello there!\n\n We've recieved a username reminder request for this email\n\nYour account name is:" + user.getUserName() +
+                        "\n\nIf you did not request this, please ignore this email. If you have any questions, " +
+                        "please forward your email to dragoncaveproject2@gmail.com"
+                        +"\n\nThanks,\nThe Dragon's Cave");
             } else if (selectionmode == 2) {
-                message.setText("Here is your recovery code: " + nr);
+                message.setSubject("The Dragon Cave: Forgotten Password");
+                message.setText("Hello there" + "!\n\n" + "We've received a password reset change request for your Dragon's Den account: " + user.getUserName() + "\n\n" +
+                        "To reset your password, please enter the below recovery code into the application\n" + "Here is your recovery code: " + nr +
+                        "\n\nIf you did not request this, please ignore this email. If you have any questions, please forward your email to dragoncaveproject2@gmail.com" +
+                        "\n\nThanks,\nThe Dragon's Cave");
             }
             Transport.send(message);
 

@@ -250,7 +250,7 @@ public class DBSingleton {
         }
         return password_from_DB != null && password_from_DB.equals(password);    }
 
-        public boolean adminCheck (String username) throws SQLException {
+         boolean adminCheck (String username) throws SQLException {
             String admin = null;
             Connection conn = setConnection();
             assert conn != null;
@@ -264,7 +264,7 @@ public class DBSingleton {
             return !(admin == null);
         }
 
-        public void insertOrder (Order o) {
+         void insertOrder (Order o) {
             String query = "INSERT INTO dragoncave.order" + "\n" + "VALUES (?,?,?,?,?,?);";
             try {
 
@@ -320,7 +320,7 @@ public class DBSingleton {
             }
         }
 
-        public int searchOrder (int orderID, int itemID) throws SQLException {
+        int searchOrder (int orderID, int itemID) throws SQLException {
         String query = "SELECT quantity FROM order_has_item WHERE order_idorder = ? AND item_iditem = ?";
         int amount = 0;
         Connection conn = setConnection();
@@ -353,9 +353,9 @@ public class DBSingleton {
         return orderList;
     }
 
-   public ArrayList <Item> getitemListForOrders(int orderid) throws SQLException {
+   private ArrayList <Item> getitemListForOrders(int orderid) throws SQLException {
         ArrayList<Item> itemlist = new ArrayList<>();
-        String query = "SELECT item_iditem, quantity FROM order_has_item WHERE order_idorder = ?";
+        String query = "SELECT * FROM order_has_item JOIN item ON item_iditem = iditem WHERE order_idorder = ?";
         Connection conn = setConnection();
         assert conn != null;
         PreparedStatement pst = conn.prepareStatement(query);
@@ -363,27 +363,13 @@ public class DBSingleton {
         ResultSet result = pst.executeQuery();
         while (result.next()) {
             int quantity = result.getInt("quantity");
-            Item a = returnItem(result.getInt("item_iditem"));
+            Item a = new Item(result.getInt("iditem"),result.getString("itemsname"),result.getDouble("price"),result.getInt("stock"),result.getString("description"),result.getString("imageURL"));
             itemlist.add(a);
             for (int i = 1; i < quantity; i++) {
                 itemlist.add(a);
             }
         }
         return itemlist;
-    }
-
-    public Item returnItem (int itemID) throws SQLException {
-        Item i = null;
-        String query = "SELECT * from item WHERE iditem = ?";
-        Connection conn = setConnection();
-        assert conn != null;
-        PreparedStatement pst = conn.prepareStatement(query);
-        pst.setInt(1,itemID);
-        ResultSet result = pst.executeQuery();
-        while (result.next()) {
-            i = new Item(result.getInt("iditem"),result.getString("itemsname"),result.getDouble("price"),result.getInt("stock"),result.getString("description"),result.getString("imageURL"));
-        }
-        return i;
     }
 
 

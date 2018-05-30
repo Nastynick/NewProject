@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,9 +36,9 @@
                 </ImageView>
                 <Button fx:id="returnButton" layoutX="52.0" layoutY="497.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="49.0" prefWidth="99.0" text="Return" />
                 <Button fx:id="clearCartButton" layoutX="52.0" layoutY="431.0" mnemonicParsing="false" onAction="#clearCartButtonPressed" prefHeight="49.0" prefWidth="99.0" text="Clear Cart" />
-            <TableView fx:id="itemArea" layoutX="187.0" layoutY="99.0" prefHeight="404.0" prefWidth="425.0">
+            <TableView fx:id="itemArea" layoutX="187.0" layoutY="99.0" prefHeight="370.0" prefWidth="425.0">
                 <placeholder>
-                    <Label text="Your cart is empty!"/>
+                    <Label text="Your cart is empty!" />
                 </placeholder>
               <columns>
                 <TableColumn fx:id="productColumn" editable="false" prefWidth="213.0" text="Product" />
@@ -57,6 +58,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <TextArea fx:id="commentField" layoutX="187.0" layoutY="481.0" prefHeight="99.0" prefWidth="283.0" promptText="Any additional comments?" />
             </children>
         </AnchorPane>
     </children>
