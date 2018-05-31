@@ -337,7 +337,7 @@ public class DBSingleton {
 
         public ArrayList<Order> getOrder (String username) throws SQLException {
             ArrayList<Order> orderList = new ArrayList<>();
-            ArrayList<Item> itemlist;
+            ArrayList<Item> itemlist = new ArrayList<>();
 
             String query = "SELECT * FROM dragoncave.order WHERE user_username = ?";
             Connection conn = setConnection();
@@ -346,7 +346,7 @@ public class DBSingleton {
             pst.setString(1,username);
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-               itemlist = getitemListForOrders(result.getInt("idorder"));
+               //itemlist = getitemListForOrders(result.getInt("idorder"));
                 Order o = new Order(result.getInt("idorder"),result.getString("status"),result.getString("shippeddate"),result.getString("comment"),result.getString("orderdate"),result.getString("user_username"),itemlist);
                 orderList.add(o);
             }

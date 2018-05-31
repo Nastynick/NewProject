@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -83,8 +84,12 @@ public class OrderHistory implements Initializable{
                     Order rowData = row.getItem();
                     String test = "";
 
-                    for (Item s : rowData.getItemList()) {
-                        test += s + "\n";
+                    try {
+                        for (Item s : dbc.getitemListForOrders(rowData.getOrderID())) {
+                            test += s + "\n";
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                     currentOrderTextArea.setText("Order ID: " + rowData.getOrderID() + "\n" + "Shipping Status: "
                             + rowData.getStatus() + "\n" + "Order Date: " + rowData.getOrderDate()

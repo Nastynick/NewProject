@@ -121,7 +121,7 @@ public class RecoveryController implements Initializable {
                 infoLabel.setText("Email is not registered with any user!");
             }
 
-        } else {
+        } else if (username_email_Field.getText().equals("")) {
             infoLabel.setText("Field empty!");
         }
     }
@@ -172,7 +172,7 @@ public class RecoveryController implements Initializable {
 
             if (selectionmode == 1) {
                 message.setSubject("The Dragon Cave: Forgotten Username");
-                message.setText("Hello there!\n\n We've recieved a username reminder request for this email\n\nYour account name is:" + user.getUserName() +
+                message.setText("Hello there!\n\n We've received a username reminder request for this email\n\nYour account name is:" + user.getUserName() +
                         "\n\nIf you did not request this, please ignore this email. If you have any questions, " +
                         "please forward your email to dragoncaveproject2@gmail.com"
                         +"\n\nThanks,\nThe Dragon's Cave");
@@ -193,6 +193,11 @@ public class RecoveryController implements Initializable {
 
     public void setData (int mode) {
         selectionmode = mode;
+        if (mode == 1) {
+            username_email_Label.setText("Please enter your email:");
+        } else if (mode == 2) {
+            username_email_Label.setText("Please enter your username:");
+        }
     }
 
     @Override
