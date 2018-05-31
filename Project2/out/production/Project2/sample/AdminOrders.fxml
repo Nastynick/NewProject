@@ -38,7 +38,7 @@
                   <TableColumn fx:id="orderDateColumn" editable="false" prefWidth="86.0" text="Order date" />
               </columns>
             </TableView>
-            <Label fx:id="orderIdLabel" layoutX="107.0" layoutY="96.0" prefHeight="66.0" prefWidth="349.0">
+            <Label fx:id="orderIdLabel" layoutX="83.0" layoutY="96.0" prefHeight="66.0" prefWidth="349.0">
                <font>
                   <Font size="16.0" />
                </font>

@@ -219,7 +219,6 @@ public class MainMenu implements Initializable {
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("itemID"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         cartPpriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         cartPnameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
