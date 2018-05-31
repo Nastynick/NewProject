@@ -1,0 +1,159 @@
+package sample;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class AdminOrders implements Initializable {
+
+    @FXML
+    private ImageView logoImage;
+
+    @FXML
+    private Button returnButton;
+
+    @FXML
+    private Label ordersLabel;
+
+    @FXML
+    private Label currentOrderLabel;
+
+    @FXML
+    private TableView<Order> orderTable;
+
+    @FXML
+    private TableColumn<?, ?> orderIDColumn;
+
+    @FXML
+    private TableColumn<?, ?> statusColumn;
+
+    @FXML
+    private TableColumn<?, ?> orderDateColumn;
+
+    @FXML
+    private Label orderIdLabel;
+
+    @FXML
+    private Label statusLabel;
+
+    @FXML
+    private Label orderDateLabel;
+
+    @FXML
+    private Label commentLabel;
+
+    @FXML
+    private Label usernameLabel;
+
+    @FXML
+    private Label shipdateLabel;
+
+    @FXML
+    private ChoiceBox<String> shippingChoiceBox;
+
+    @FXML
+    private Button confirmButton;
+
+    @FXML
+    private Label productLabel;
+
+    private DBSingleton dbc = new DBSingleton();
+
+    private ArrayList<Item> currentItemlist;
+
+    private String itemList;
+    private ObservableList<Order> orderData = null;
+
+    @FXML
+    void onConfirmButtonPressed(ActionEvent event) {
+        if (!orderIdLabel.getText().equals("")) {
+            try {
+                dbc.updateOrderStatus(shippingChoiceBox.getValue(),Integer.valueOf(orderIdLabel.getText()));
+                try {
+                    orderData = FXCollections.observableArrayList(dbc.getOrderforAdmin());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                orderTable.setItems(orderData);
+                orderIdLabel.setText("");
+                statusLabel.setText("Status: ");
+                orderDateLabel.setText("Order date: ");
+                commentLabel.setText("Comment: ");
+                usernameLabel.setText("Username: ");
+                shipdateLabel.setText("Ship date: ");
+                productLabel.setText("Products: ");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    void onReturnButtonPressed(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        shippingChoiceBox.setItems(FXCollections.observableArrayList("Pending","Processing","Shipped","Cancelled"));
+        shippingChoiceBox.getSelectionModel().selectFirst();
+        orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+
+        try {
+            orderData = FXCollections.observableArrayList(dbc.getOrderforAdmin());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        orderTable.setItems(orderData);
+
+        orderTable.setRowFactory((TableView<Order> tv) -> {
+            TableRow<Order> row = new TableRow<>();
+            row.setOnMouseClicked((javafx.scene.input.MouseEvent event) -> {
+                if (event.getClickCount() == 1 && (!row.isEmpty())) {
+                    itemList = "";
+                    Order rowData = row.getItem();
+                    orderIdLabel.setText(String.valueOf(rowData.getOrderID()));
+                    statusLabel.setText("Status: " + rowData.getStatus());
+                    orderDateLabel.setText("Order date: " + rowData.getOrderDate());
+                    commentLabel.setText("Comment: " + rowData.getComment());
+                    usernameLabel.setText("Username: " + rowData.getUserName());
+                    shipdateLabel.setText("Ship date: " + rowData.getShippedDate());
+                    try {
+                        currentItemlist = dbc.getitemListForOrders(rowData.getOrderID());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    for (Item it : currentItemlist) {
+                        itemList += itemList+ it.getItemName() + ", ";
+                    }
+                    productLabel.setText("Products: " + itemList);
+
+                }
+            });
+            return row;
+        });
+    }
+}

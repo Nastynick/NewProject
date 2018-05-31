@@ -353,7 +353,7 @@ public class DBSingleton {
         return orderList;
     }
 
-   private ArrayList <Item> getitemListForOrders(int orderid) throws SQLException {
+   ArrayList <Item> getitemListForOrders(int orderid) throws SQLException {
         ArrayList<Item> itemlist = new ArrayList<>();
         String query = "SELECT * FROM order_has_item JOIN item ON item_iditem = iditem WHERE order_idorder = ?";
         Connection conn = setConnection();
@@ -370,6 +370,33 @@ public class DBSingleton {
             }
         }
         return itemlist;
+    }
+
+    public ArrayList<Order> getOrderforAdmin () throws SQLException {
+        ArrayList<Order> orderList = new ArrayList<>();
+        ArrayList<Item> itemlist = new ArrayList<>();
+
+        String query = "SELECT * FROM dragoncave.order ";
+        Connection conn = setConnection();
+        assert conn != null;
+        PreparedStatement pst = conn.prepareStatement(query);
+        ResultSet result = pst.executeQuery();
+        while (result.next()) {
+            Order o = new Order(result.getInt("idorder"),result.getString("status"),result.getString("shippeddate"),result.getString("comment"),result.getString("orderdate"),result.getString("user_username"),itemlist);
+            orderList.add(o);
+        }
+        return orderList;
+    }
+
+    public void updateOrderStatus (String status, int orderID) throws SQLException {
+        Connection conn = setConnection();
+        String query = "UPDATE dragoncave.order SET status = ? WHERE idorder = ?";
+        assert conn != null;
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, status);
+        pst.setInt(2,orderID);
+        pst.execute();
+
     }
 
 

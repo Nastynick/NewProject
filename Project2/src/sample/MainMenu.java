@@ -79,6 +79,9 @@ public class MainMenu implements Initializable {
     @FXML
     private ImageView itemImage;
 
+    @FXML
+    private Button orderManagementButton;
+
     private ArrayList<Item> itemlist = new ArrayList<>();
     private ArrayList<Item> cartP = new ArrayList<>();
     private ObservableList<Item> cartPreviewData;
@@ -94,6 +97,11 @@ public class MainMenu implements Initializable {
 
     @FXML
     private Label productDescLabel;
+
+    @FXML
+    void onOrderManagementButtonPressed(ActionEvent event) throws Exception {
+        changeScene("AdminOrders.fxml",event);
+    }
 
     @FXML
     void onAdminPressed(ActionEvent event) throws Exception {
@@ -225,8 +233,10 @@ public class MainMenu implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         adminButton.setVisible(false);
+        orderManagementButton.setVisible(false);
         if (UserSingleton.getInstance().isAdmin()) {
             adminButton.setVisible(true);
+            orderManagementButton.setVisible(true);
         }
         try {
             startUp();
