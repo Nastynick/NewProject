@@ -6,12 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-
-
-import java.io.File;
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -27,7 +22,7 @@ public class Main extends Application {
         };
         new Thread(music).start();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            
+
         }));
 
         primaryStage.setResizable(false);

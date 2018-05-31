@@ -192,6 +192,7 @@ public class AdminController implements Initializable {
                 statusLabel.setText("Error: First field empty!");
             }
             updateTables();
+            resetFields();
         }
 
     }
@@ -208,6 +209,7 @@ public class AdminController implements Initializable {
             }
 
         }
+        resetFields();
         updateTables();
     }
 
@@ -231,6 +233,7 @@ public class AdminController implements Initializable {
             User u = new User(itemID_UsernameField.getText(),passwordField.getText(), address_ImageURL_Field.getText(),stock_emailField.getText(),itemname_firstnameField.getText(),price_lastnameField.getText(),Integer.valueOf(ageField.getText()),phoneNumberField.getText());
             dbc.alterUser(u,2);
         }
+        resetFields();
         updateTables();
     }
 
@@ -330,6 +333,16 @@ public class AdminController implements Initializable {
     private void updateUsers (String search, int searchMethod) throws Exception {
         ObservableList<User> userData = FXCollections.observableArrayList(dbc.getUserList(search,searchMethod));
         user_table.setItems(userData);
+    }
+    private void resetFields () {
+        itemID_UsernameField.setText("");
+        itemname_firstnameField.setText("");
+        price_lastnameField.setText("");
+        stock_emailField.setText("");
+        ageField.setText("");
+        address_ImageURL_Field.setText("");
+        phoneNumberField.setText("");
+        passwordField.setText("");
     }
 
 

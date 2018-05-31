@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,7 +31,6 @@
                 </ImageView>
             <Button fx:id="returnButton" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#onReturnButtonPressed" prefHeight="38.0" prefWidth="94.0" text="Return" />
             <Label fx:id="ordersLabel" layoutX="563.0" layoutY="32.0" prefHeight="17.0" prefWidth="42.0" text="Orders" textAlignment="CENTER" />
-            <Label fx:id="currentOrderLabel" layoutX="207.0" layoutY="32.0" text="Current Order" />
             <TableView fx:id="orderTable" layoutX="435.0" layoutY="71.0" prefHeight="471.0" prefWidth="286.0">
               <columns>
                 <TableColumn fx:id="orderIDColumn" editable="false" prefWidth="100.0" text="Order ID" />
@@ -68,15 +68,15 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="shippingChoiceBox" layoutX="158.0" layoutY="523.0" prefHeight="25.0" prefWidth="189.0" />
-            <Button fx:id="confirmButton" layoutX="369.0" layoutY="523.0" mnemonicParsing="false" onAction="#onConfirmButtonPressed" text="Confirm" />
-            <Label layoutX="188.0" layoutY="506.0" text="Change Shipping Status:" />
-            <Label fx:id="productLabel" alignment="TOP_LEFT" layoutX="21.0" layoutY="330.0" prefHeight="133.0" prefWidth="414.0" text="Products:" wrapText="true" />
+            <ChoiceBox fx:id="shippingChoiceBox" layoutX="159.0" layoutY="536.0" prefHeight="25.0" prefWidth="189.0" />
+            <Button fx:id="confirmButton" layoutX="367.0" layoutY="536.0" mnemonicParsing="false" onAction="#onConfirmButtonPressed" text="Confirm" />
+            <Label layoutX="189.0" layoutY="515.0" text="Change Shipping Status:" />
             <Label fx:id="orderIdLabel1" layoutX="24.0" layoutY="96.0" prefHeight="66.0" prefWidth="74.0" text="OrderID: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
+            <TextArea fx:id="productField" layoutX="21.0" layoutY="330.0" prefHeight="155.0" prefWidth="405.0" text="Products: " wrapText="true" />
             </children>
         </AnchorPane>
     </children>

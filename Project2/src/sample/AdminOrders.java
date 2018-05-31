@@ -71,7 +71,7 @@ public class AdminOrders implements Initializable {
     private Button confirmButton;
 
     @FXML
-    private Label productLabel;
+    private TextArea productField;
 
     private DBSingleton dbc = new DBSingleton();
 
@@ -79,6 +79,7 @@ public class AdminOrders implements Initializable {
 
     private String itemList;
     private ObservableList<Order> orderData = null;
+    private StringBuilder sb = new StringBuilder();
 
     @FXML
     void onConfirmButtonPressed(ActionEvent event) {
@@ -97,7 +98,7 @@ public class AdminOrders implements Initializable {
                 commentLabel.setText("Comment: ");
                 usernameLabel.setText("Username: ");
                 shipdateLabel.setText("Ship date: ");
-                productLabel.setText("Products: ");
+                productField.setText("Products: ");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -147,9 +148,9 @@ public class AdminOrders implements Initializable {
                         e.printStackTrace();
                     }
                     for (Item it : currentItemlist) {
-                        itemList += itemList+ it.getItemName() + ", ";
+                        sb.append(it.getItemName() + "\n");
                     }
-                    productLabel.setText("Products: " + itemList);
+                    productField.setText("Products: " + sb);
 
                 }
             });

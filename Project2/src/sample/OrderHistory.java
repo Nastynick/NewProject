@@ -52,7 +52,7 @@ public class OrderHistory implements Initializable{
     private TextArea currentOrderTextArea;
 
     private ArrayList<Item> temp = new ArrayList<>();
-    DBSingleton dbc = new DBSingleton();
+    private DBSingleton dbc = new DBSingleton();
 
     @FXML
     private void onReturnButtonPressed(ActionEvent event) throws Exception {
