@@ -17,9 +17,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Checkout implements Initializable{
@@ -45,9 +47,6 @@ public class Checkout implements Initializable{
     @FXML
     private TableColumn<?, ?> priceColumn;
 
-    @FXML
-    private TextArea commentField;
-
     private ArrayList<Item> itemlist = new ArrayList<>();
     private ObservableList<Item> cart;
     private double cost;
@@ -68,7 +67,8 @@ public class Checkout implements Initializable{
     @FXML
     private void confirmButtonPressed(ActionEvent event) throws Exception {
         if (!itemlist.isEmpty()) {
-            Order o = new Order(getRandomNr(),"Not Shipped","N/A",commentField.getText(),getTime(),UserSingleton.getInstance().getUsername(),itemlist);
+            Order o = new Order(getRandomNr(),"Not Shipped","N/A","B",getTime(),UserSingleton.getInstance().getUsername(),itemlist);
+
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckOutField.fxml"));
@@ -96,10 +96,8 @@ public class Checkout implements Initializable{
     }
 
     private String getTime () throws Exception {
-        ZonedDateTime now = ZonedDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
-        //  kk:mm:ss OOOO
-        return now.format(formatter);
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        return date;
     }
     private int getRandomNr() throws Exception {
         SecureRandom random = new SecureRandom();
