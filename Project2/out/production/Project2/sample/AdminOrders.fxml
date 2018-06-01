@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,13 +30,13 @@
                         <Image url="@logo.png" />
                     </image>
                 </ImageView>
-            <Button fx:id="returnButton" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#onReturnButtonPressed" prefHeight="38.0" prefWidth="94.0" text="Return" />
-            <Label fx:id="ordersLabel" layoutX="563.0" layoutY="32.0" prefHeight="17.0" prefWidth="42.0" text="Orders" textAlignment="CENTER" />
-            <TableView fx:id="orderTable" layoutX="435.0" layoutY="71.0" prefHeight="471.0" prefWidth="286.0">
+            <Button fx:id="returnButton" layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#onReturnButtonPressed" prefHeight="38.0" prefWidth="94.0" text="Return" />
+            <TableView fx:id="orderTable" layoutX="339.0" layoutY="73.0" prefHeight="512.0" prefWidth="386.0">
               <columns>
                 <TableColumn fx:id="orderIDColumn" editable="false" prefWidth="100.0" text="Order ID" />
                 <TableColumn fx:id="statusColumn" editable="false" prefWidth="99.0" text="Status" />
                   <TableColumn fx:id="orderDateColumn" editable="false" prefWidth="86.0" text="Order date" />
+                  <TableColumn fx:id="userNameColumn1" editable="false" prefWidth="100.0" text="Username" />
               </columns>
             </TableView>
             <Label fx:id="orderIdLabel" layoutX="83.0" layoutY="96.0" prefHeight="66.0" prefWidth="349.0">
@@ -68,15 +69,18 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="shippingChoiceBox" layoutX="159.0" layoutY="536.0" prefHeight="25.0" prefWidth="189.0" />
-            <Button fx:id="confirmButton" layoutX="367.0" layoutY="536.0" mnemonicParsing="false" onAction="#onConfirmButtonPressed" text="Confirm" />
-            <Label layoutX="189.0" layoutY="515.0" text="Change Shipping Status:" />
+            <ChoiceBox fx:id="shippingChoiceBox" layoutX="118.0" layoutY="549.0" prefHeight="25.0" prefWidth="157.0" />
+            <Button fx:id="confirmButton" layoutX="275.0" layoutY="549.0" mnemonicParsing="false" onAction="#onConfirmButtonPressed" prefHeight="25.0" prefWidth="60.0" text="Confirm" />
+            <Label layoutX="132.0" layoutY="534.0" text="Change Shipping Status:" />
             <Label fx:id="orderIdLabel1" layoutX="24.0" layoutY="96.0" prefHeight="66.0" prefWidth="74.0" text="OrderID: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextArea fx:id="productField" layoutX="21.0" layoutY="330.0" prefHeight="155.0" prefWidth="405.0" text="Products: " wrapText="true" />
+            <TextArea fx:id="productField" layoutX="21.0" layoutY="330.0" prefHeight="155.0" prefWidth="306.0" text="Products: " wrapText="true" />
+            <TextField fx:id="searchField" layoutX="500.0" layoutY="32.0" />
+            <ChoiceBox fx:id="searchBox" layoutX="339.0" layoutY="32.0" prefWidth="150.0" />
+            <Button fx:id="searchButton" layoutX="660.0" layoutY="32.0" mnemonicParsing="false" onAction="#onSearchButtonPressed" text="Button" />
             </children>
         </AnchorPane>
     </children>

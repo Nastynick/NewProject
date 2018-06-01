@@ -320,7 +320,7 @@ public class DBSingleton {
             }
         }
 
-        int searchOrder (int orderID, int itemID) throws SQLException {
+        private int searchOrder (int orderID, int itemID) throws SQLException {
         String query = "SELECT quantity FROM order_has_item WHERE order_idorder = ? AND item_iditem = ?";
         int amount = 0;
         Connection conn = setConnection();
@@ -335,7 +335,7 @@ public class DBSingleton {
             return amount;
         }
 
-        public ArrayList<Order> getOrder (String username) throws SQLException {
+    ArrayList<Order> getOrder (String username) throws SQLException {
             ArrayList<Order> orderList = new ArrayList<>();
             ArrayList<Item> itemlist = new ArrayList<>();
 
@@ -346,7 +346,6 @@ public class DBSingleton {
             pst.setString(1,username);
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-               //itemlist = getitemListForOrders(result.getInt("idorder"));
                 Order o = new Order(result.getInt("idorder"),result.getString("status"),result.getString("shippeddate"),result.getString("comment"),result.getString("orderdate"),result.getString("user_username"),itemlist);
                 orderList.add(o);
             }
@@ -372,7 +371,7 @@ public class DBSingleton {
         return itemlist;
     }
 
-    public ArrayList<Order> getOrderforAdmin () throws SQLException {
+    ArrayList<Order> getOrderforAdmin () throws SQLException {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Item> itemlist = new ArrayList<>();
 
@@ -388,7 +387,7 @@ public class DBSingleton {
         return orderList;
     }
 
-    public void updateOrderStatus (String status, int orderID) throws SQLException {
+    void updateOrderStatus (String status, int orderID) throws SQLException {
         Connection conn = setConnection();
         String query = "UPDATE dragoncave.order SET status = ? WHERE idorder = ?";
         assert conn != null;
@@ -399,7 +398,7 @@ public class DBSingleton {
 
     }
 
-    public Admin getAdmin (String username) throws SQLException {
+    Admin getAdmin (String username) throws SQLException {
         Connection conn = setConnection();
         Admin admin = null;
         String query = "SELECT * from user JOIN admin ON username = user_username WHERE username = ?";
@@ -416,7 +415,7 @@ public class DBSingleton {
         return admin;
     }
 
-    public boolean registerCheck (String username, String email) throws SQLException {
+    boolean registerCheck (String username, String email) throws SQLException {
         ArrayList<String> usernames = new ArrayList<>();
         ArrayList<String> emailList = new ArrayList<>();
         boolean check = true;
@@ -440,6 +439,37 @@ public class DBSingleton {
             }
         }
         return check;
+    }
+
+    public ArrayList<Order> getAdminOrderSearch (String search, String searchmethod) throws SQLException {
+        ArrayList<Order> orderlist = new ArrayList<>();
+        ArrayList<Item> itemlist = new ArrayList<>();
+        String query = null;
+        switch (searchmethod) {
+            case "OrderID":
+                query = "SELECT * from dragoncave.order WHERE idorder LIKE ?";
+                break;
+            case "Status":
+                query = "SELECT * from dragoncave.order WHERE status LIKE ?";
+                break;
+            case "Order date":
+                query = "SELECT * from dragoncave.order WHERE orderdate LIKE ?";
+                break;
+            case "Username":
+                query = "SELECT * from dragoncave.order WHERE user_username LIKE ?";
+                break;
+
+        }
+        Connection conn = setConnection();
+        assert conn != null;
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1,"%" + search + "%");
+        ResultSet result = pst.executeQuery();
+        while (result.next())  {
+            Order o = new Order(result.getInt("idorder"),result.getString("status"),result.getString("shippeddate"),result.getString("comment"),result.getString("orderdate"),result.getString("user_username"),itemlist);
+            orderlist.add(o);
+        }
+        return orderlist;
     }
 
 

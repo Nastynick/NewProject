@@ -73,6 +73,19 @@ public class AdminOrders implements Initializable {
     @FXML
     private TextArea productField;
 
+    @FXML
+    private TableColumn<?, ?> userNameColumn1;
+
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private ChoiceBox<String> searchBox;
+
+    @FXML
+    private Button searchButton;
+
+
     private DBSingleton dbc = new DBSingleton();
 
     private ArrayList<Item> currentItemlist;
@@ -80,6 +93,29 @@ public class AdminOrders implements Initializable {
     private String itemList;
     private ObservableList<Order> orderData = null;
     private StringBuilder sb = new StringBuilder();
+
+
+    @FXML
+    void onSearchButtonPressed(ActionEvent event) {
+
+        if (!searchField.getText().equals("")) {
+            try {
+
+                orderData = FXCollections.observableArrayList(dbc.getAdminOrderSearch(searchField.getText(),searchBox.getValue()));
+                orderTable.setItems(orderData);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (searchField.getText().equals("")) {
+            try {
+                orderData = FXCollections.observableArrayList(dbc.getOrderforAdmin());
+                orderTable.setItems(orderData);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     @FXML
     void onConfirmButtonPressed(ActionEvent event) {
@@ -119,22 +155,26 @@ public class AdminOrders implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         shippingChoiceBox.setItems(FXCollections.observableArrayList("Pending","Processing","Shipped","Cancelled"));
         shippingChoiceBox.getSelectionModel().selectFirst();
+        searchBox.setItems(FXCollections.observableArrayList("OrderID","Status","Order date","Username"));
+        searchBox.getSelectionModel().selectFirst();
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+        userNameColumn1.setCellValueFactory(new PropertyValueFactory<>("userName"));
 
         try {
             orderData = FXCollections.observableArrayList(dbc.getOrderforAdmin());
+            orderTable.setItems(orderData);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        orderTable.setItems(orderData);
 
         orderTable.setRowFactory((TableView<Order> tv) -> {
             TableRow<Order> row = new TableRow<>();
             row.setOnMouseClicked((javafx.scene.input.MouseEvent event) -> {
                 if (event.getClickCount() == 1 && (!row.isEmpty())) {
                     itemList = "";
+                    sb.setLength(0);
                     Order rowData = row.getItem();
                     orderIdLabel.setText(String.valueOf(rowData.getOrderID()));
                     statusLabel.setText("Status: " + rowData.getStatus());
