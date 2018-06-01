@@ -220,9 +220,9 @@ public class DBSingleton {
             Connection conn = setConnection();
             assert conn != null;
             PreparedStatement pst = conn.prepareStatement(query);
-            if (searchmethod == 2) {
+            if (searchmethod == 3) {
                 pst.setString(1,search);
-            } else if (searchmethod == 3) {
+            } else if (searchmethod == 2) {
                 pst.setString(1,"%" + search + "%");
             }
             ResultSet result = pst.executeQuery();
@@ -397,6 +397,49 @@ public class DBSingleton {
         pst.setInt(2,orderID);
         pst.execute();
 
+    }
+
+    public Admin getAdmin (String username) throws SQLException {
+        Connection conn = setConnection();
+        Admin admin = null;
+        String query = "SELECT * from user JOIN admin ON username = user_username WHERE username = ?";
+        assert conn != null;
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, username);
+        ResultSet result = pst.executeQuery();
+        while (result.next()) {
+             admin = new Admin (result.getString("username"),result.getString("password"),
+                    result.getString("address"), result.getString("email"),
+                    result.getString("firstname"), result.getString("lastname"),
+                    result.getInt("age"), result.getString("phoneNumber"),String.valueOf(result.getInt("adminID")));
+        }
+        return admin;
+    }
+
+    public boolean registerCheck (String username, String email) throws SQLException {
+        ArrayList<String> usernames = new ArrayList<>();
+        ArrayList<String> emailList = new ArrayList<>();
+        boolean check = true;
+        Connection conn = setConnection();
+        String query = "SELECT username, email FROM user";
+        assert conn != null;
+        PreparedStatement pst = conn.prepareStatement(query);
+        ResultSet result = pst.executeQuery();
+        while (result.next()) {
+            usernames.add(result.getString("username"));
+            emailList.add( result.getString("email"));
+        }
+        for (String userN : usernames) {
+            if (userN.equals(username)) {
+                check = false;
+            }
+        }
+        for (String useremail : emailList){
+            if (useremail.equals(email)) {
+                check = false;
+            }
+        }
+        return check;
     }
 
 

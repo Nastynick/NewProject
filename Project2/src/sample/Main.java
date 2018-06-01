@@ -24,9 +24,6 @@ public class Main extends Application {
                 player.play();
         };
         new Thread(music).start();
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-
-        }));
 
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));

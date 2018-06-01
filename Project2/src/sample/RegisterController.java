@@ -16,6 +16,7 @@ import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -119,20 +120,18 @@ public class RegisterController implements Initializable {
     }
 
 
-    private boolean errorCheck () { // method for errorhandling login - Niclas
+    private boolean errorCheck () throws SQLException { // method for errorhandling login - Niclas
         int usernamecheck = 0;
 
-        for (User s : dbc.getUserList(usernameField.getText(), 3)) {
-            if (usernameField.getText().equals(s.getUserName())) {
+
+            if (dbc.registerCheck(usernameField.getText(),emailField.getText()) && !usernameField.getText().equals("") && !emailField.getText().equals("")) {
                 usernamecheck = 1;
             }
-        }
-
             if (ageField.getText().equals("")) {
                 ageField.setText("0");
             }
-            if (usernamecheck == 1) {
-                error += "Error: " + "Username already exists!";
+            if (usernamecheck == 0) {
+                error += "Error: " + "Username/Email already exists!";
             }
             if (passwordField.getLength() < 3) {
                 error += "\nError: " + "Password is too short!";
@@ -146,7 +145,7 @@ public class RegisterController implements Initializable {
             if (Integer.valueOf(ageField.getText()) < 13) {
                 error += "\nError: " + "Minimum age is 13 to register!";
             }
-            return passwordField.getLength() >= 3 && passwordField.getText().equals(confirmPasswordField.getText()) && usernameField.getLength() > 0 && usernamecheck != 1 && firstNameField.getLength() > 0 && surNameField.getLength() > 0 && addressField.getLength() > 0 && emailField.getLength() > 0 && phoneNumberField.getLength() > 0 && ageField.getLength() > 0 && Integer.valueOf(ageField.getText()) >= 13;
+            return passwordField.getLength() >= 3 && passwordField.getText().equals(confirmPasswordField.getText()) && usernameField.getLength() > 0 && usernamecheck != 0 && firstNameField.getLength() > 0 && surNameField.getLength() > 0 && addressField.getLength() > 0 && emailField.getLength() > 0 && phoneNumberField.getLength() > 0 && ageField.getLength() > 0 && Integer.valueOf(ageField.getText()) >= 13;
     }
     private void startUp() throws Exception {
         //dbc.Connect();

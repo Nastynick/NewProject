@@ -8,12 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class AccountDetailsController {
 
-    DBSingleton dbc = new DBSingleton();
 
     private Alert error = new Alert(Alert.AlertType.ERROR);
     private Alert inform = new Alert(Alert.AlertType.INFORMATION);
@@ -58,7 +59,7 @@ public class AccountDetailsController {
     @FXML
     private TextField adminIDField;
 
-
+    private DBSingleton dbc = new DBSingleton();
     private ArrayList<Item> temp = new ArrayList<>();
     private ArrayList<User> localUserList = new ArrayList<>();
 
@@ -101,19 +102,37 @@ public class AccountDetailsController {
 
     public void setData(ArrayList<Item> list) {
         temp = list;
-        System.out.println(UserSingleton.getInstance().getUsername());
-        DBSingleton dbc = new DBSingleton();
-        ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 3);
-        User e = ul.get(0);
-        System.out.println(e.getUserName());
-        userNameField.setText(e.getUserName());
-        firstNameField.setText(e.getFirstname());
-        lastNameField.setText(e.getLastname());
-        ageField.setText(String.valueOf(e.getAge()));
-        phoneNumberField.setText(e.getPhoneNumber());
-        addressField.setText(e.getAddress());
-        emailField.setText(e.getEmail());
-        oldPasswordField.setText(e.getPassWord());
+        adminIDField.setVisible(false);
+
+        if (UserSingleton.getInstance().isAdmin()) {
+            try {
+                adminIDField.setVisible(true);
+                Admin a = dbc.getAdmin(UserSingleton.getInstance().getUsername());
+                userNameField.setText(a.getUserName());
+                firstNameField.setText(a.getFirstname());
+                lastNameField.setText(a.getLastname());
+                ageField.setText(String.valueOf(a.getAge()));
+                phoneNumberField.setText(a.getPhoneNumber());
+                addressField.setText(a.getAddress());
+                emailField.setText(a.getEmail());
+                oldPasswordField.setText(a.getPassWord());
+                adminIDField.setText(a.getAdminID());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (!UserSingleton.getInstance().isAdmin()) {
+            ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 3);
+            User e = ul.get(0);
+            userNameField.setText(e.getUserName());
+            firstNameField.setText(e.getFirstname());
+            lastNameField.setText(e.getLastname());
+            ageField.setText(String.valueOf(e.getAge()));
+            phoneNumberField.setText(e.getPhoneNumber());
+            addressField.setText(e.getAddress());
+            emailField.setText(e.getEmail());
+            oldPasswordField.setText(e.getPassWord());
+        }
+
 
 
     }

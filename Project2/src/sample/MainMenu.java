@@ -86,6 +86,7 @@ public class MainMenu implements Initializable {
     private ArrayList<Item> cartP = new ArrayList<>();
     private ObservableList<Item> cartPreviewData;
     private static DecimalFormat df = new DecimalFormat(".##");
+    private ObservableList<Item> itemData;
 
     private double cost;
 
@@ -119,7 +120,16 @@ public class MainMenu implements Initializable {
 
     @FXML
     private void searchButtonPressed(ActionEvent event) throws Exception {
-        // db.Getitems(search)
+        if (!searchField.getText().equals("")) {
+            itemlist = dbc.getItemList(searchField.getText(),2);
+            itemData = FXCollections.observableArrayList(itemlist);
+            itemTableView.setItems(itemData);
+        } else if (searchField.getText().equals("")) {
+            itemlist = dbc.getItemList("",1);
+            itemData = FXCollections.observableArrayList(itemlist);
+            itemTableView.setItems(itemData);
+        }
+
     }
 
     @FXML
@@ -222,8 +232,8 @@ public class MainMenu implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         cartPpriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         cartPnameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
-
-        ObservableList<Item> itemData = FXCollections.observableArrayList(dbc.getItemList("",1));
+        itemlist = dbc.getItemList("",1);
+        itemData = FXCollections.observableArrayList(itemlist);
         itemTableView.setItems(itemData);
         cartPreviewData = FXCollections.observableArrayList(cartP);
 
