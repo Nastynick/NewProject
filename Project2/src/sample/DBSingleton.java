@@ -227,7 +227,9 @@ public class DBSingleton {
             }
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-                Item item = new Item(result.getInt("iditem"),result.getString("itemsname"),result.getDouble("price"),result.getInt("stock"),result.getString("description"),result.getString("imageURL"));
+                Item item = new Item(result.getInt("iditem"),result.getString("itemsname"),
+                        result.getDouble("price"),result.getInt("stock"),
+                        result.getString("description"),result.getString("imageURL"));
                 itemsList.add(item);
             }
 

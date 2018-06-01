@@ -318,6 +318,7 @@ public class AdminController implements Initializable {
         ageField.setText("");
         address_ImageURL_Field.setText("");
         phoneNumberField.setText("");
+        productdescField.setText("");
     }
 
     private void updateTables() throws Exception {
@@ -326,12 +327,14 @@ public class AdminController implements Initializable {
     }
 
     private void updateItems (String search, int searchMethod) throws Exception {
-        ObservableList<Item> itemData = FXCollections.observableArrayList(dbc.getItemList(search,searchMethod)
+        ObservableList<Item> itemData;
+        itemData = FXCollections.observableArrayList(dbc.getItemList(search,searchMethod)
         );
         item_table.setItems(itemData);
     }
     private void updateUsers (String search, int searchMethod) throws Exception {
-        ObservableList<User> userData = FXCollections.observableArrayList(dbc.getUserList(search,searchMethod));
+        ObservableList<User> userData;
+        userData = FXCollections.observableArrayList(dbc.getUserList(search,searchMethod));
         user_table.setItems(userData);
     }
     private void resetFields () {
@@ -343,6 +346,7 @@ public class AdminController implements Initializable {
         address_ImageURL_Field.setText("");
         phoneNumberField.setText("");
         passwordField.setText("");
+        productdescField.setText("");
     }
 
 
