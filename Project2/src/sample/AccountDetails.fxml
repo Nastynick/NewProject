@@ -52,13 +52,13 @@
             <TextField fx:id="emailField" layoutX="414.0" layoutY="237.0" prefHeight="25.0" prefWidth="169.0" />
             <Label layoutX="346.0" layoutY="287.0" prefHeight="25.0" prefWidth="35.0" text="Age:" />
             <Label fx:id="adminIDLabel" layoutX="60.0" layoutY="145.0" prefHeight="25.0" prefWidth="68.0" text="Admin ID" />
-            <Label alignment="CENTER" layoutX="181.0" layoutY="376.0" prefHeight="44.0" prefWidth="102.0" text="New Password" />
+            <Label alignment="CENTER" layoutX="181.0" layoutY="376.0" prefHeight="44.0" prefWidth="102.0" text="Password:" />
             <Label fx:id="oldPasswordLabel" alignment="CENTER" layoutX="458.0" layoutY="376.0" prefHeight="44.0" prefWidth="102.0" text="Confirm Password" />
             <TextField fx:id="ageField" editable="false" layoutX="414.0" layoutY="287.0" prefHeight="25.0" prefWidth="169.0" />
             <TextField fx:id="adminIDField" editable="false" layoutX="157.0" layoutY="145.0" prefHeight="25.0" prefWidth="169.0" />
             <PasswordField fx:id="newPasswordField" layoutX="157.0" layoutY="421.0" />
             <PasswordField fx:id="oldPasswordField" layoutX="434.0" layoutY="421.0" prefHeight="25.0" prefWidth="149.0" />
-            <TextField fx:id="userNameField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="190.0" prefHeight="25.0" prefWidth="169.0" />
+            <TextField fx:id="userNameField" editable="false" layoutX="414.0" layoutY="190.0" prefHeight="25.0" prefWidth="169.0" />
             <Label layoutX="339.0" layoutY="190.0" prefHeight="25.0" prefWidth="68.0" text="Username:" />
             <Button fx:id="changePwordButton" layoutX="414.0" layoutY="341.0" mnemonicParsing="false" onAction="#onPwordButtonPressed" prefHeight="25.0" prefWidth="169.0" text="Change password?" />
             <Label layoutX="346.0" layoutY="346.0" text="Password:" />

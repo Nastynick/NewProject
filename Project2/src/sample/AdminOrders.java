@@ -97,7 +97,7 @@ public class AdminOrders implements Initializable {
     private StringBuilder sb = new StringBuilder();
 
 
-    public void searchAdminOrders () { // filters orders, depending on mode selected
+     private void searchAdminOrders () { // filters orders, depending on mode selected
         if (!searchField.getText().equals("")) {
             try {
 
@@ -133,11 +133,7 @@ public class AdminOrders implements Initializable {
         if (!orderIdLabel.getText().equals("")) {
             try {
                 dbc.updateOrderStatus(shippingChoiceBox.getValue(),Integer.valueOf(orderIdLabel.getText()));
-                try {
-                    orderData = FXCollections.observableArrayList(dbc.getOrderforAdmin());
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                searchAdminOrders();
                 orderTable.setItems(orderData);
                 orderIdLabel.setText("");
                 statusLabel.setText("Status: ");

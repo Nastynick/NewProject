@@ -1,7 +1,9 @@
 package sample;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -391,13 +393,20 @@ public class DBSingleton {
 
     void updateOrderStatus (String status, int orderID) throws SQLException {
         Connection conn = setConnection();
-        String query = "UPDATE dragoncave.order SET status = ? WHERE idorder = ?";
+        String shippeddate;
+        if (status.equals("Shipped")) {
+            shippeddate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        } else {
+            shippeddate = "N/A";
+        }   
+
+        String query = "UPDATE dragoncave.order SET status = ?, shippeddate = ? WHERE idorder = ?";
         assert conn != null;
         PreparedStatement pst = conn.prepareStatement(query);
         pst.setString(1, status);
-        pst.setInt(2,orderID);
+        pst.setString(2,shippeddate);
+        pst.setInt(3,orderID);
         pst.execute();
-
     }
 
     Admin getAdmin (String username) throws SQLException {
@@ -447,6 +456,7 @@ public class DBSingleton {
         ArrayList<Order> orderlist = new ArrayList<>();
         ArrayList<Item> itemlist = new ArrayList<>();
         String query = null;
+
         switch (searchmethod) {
             case "OrderID":
                 query = "SELECT * from dragoncave.order WHERE idorder LIKE ?";
