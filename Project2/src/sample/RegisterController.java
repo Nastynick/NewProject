@@ -59,7 +59,7 @@ public class RegisterController implements Initializable {
     private TextField emailField;
 
     private String error = "";
-    DBSingleton dbc = new DBSingleton();
+    private DBSingleton dbc = new DBSingleton();
 
     @FXML
     private void onRegisterCancelButtonPressed(ActionEvent event) throws Exception {
@@ -73,7 +73,7 @@ public class RegisterController implements Initializable {
         }
 
 
-    private void register(ActionEvent event) throws Exception {
+    private void register(ActionEvent event) throws Exception { // registers the user
         if (errorCheck()) {
             try {
                 User user = new User(usernameField.getText(),passwordField.getText(),addressField.getText(),emailField.getText(),firstNameField.getText(),surNameField.getText(),Integer.valueOf(ageField.getText()),phoneNumberField.getText());
@@ -120,7 +120,7 @@ public class RegisterController implements Initializable {
     }
 
 
-    private boolean errorCheck () throws SQLException { // method for errorhandling login - Niclas
+    private boolean errorCheck () throws SQLException { // method for errorhandling
         int usernamecheck = 0;
 
 

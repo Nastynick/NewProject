@@ -69,9 +69,11 @@ public class RecoveryController implements Initializable {
     private int nr;
 
     @FXML
-    private void onConfirmButtonPressed(ActionEvent event) {
+    private void onConfirmButtonPressed(ActionEvent event) { // final step before password change
         if (passwordField.getText().equals(repeatpasswordField.getText()) && !passwordField.getText().equals("")) {
-            // dbc alter user
+            ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 3);
+            User e = ul.get(0);
+            dbc.alterUser(e,2);
             infoLabel.setText("Password reset! You may now go back and login.");
             confirmButton.setDisable(true);
         } else {
@@ -80,7 +82,7 @@ public class RecoveryController implements Initializable {
     }
 
     @FXML
-    void onConfirm1ButtonPressed(ActionEvent event) throws Exception {
+    private void onConfirm1ButtonPressed(ActionEvent event) throws Exception { // Sends recovery mail or sends username
         System.out.println(selectionmode);
 
         if (!username_email_Field.getText().equals("") && selectionmode == 2) {
@@ -127,7 +129,7 @@ public class RecoveryController implements Initializable {
     }
 
     @FXML
-    void onConfirm2ButtonPressed(ActionEvent event) {
+    private void onConfirm2ButtonPressed(ActionEvent event) { //checks verification code
         if (Integer.valueOf(recoveryCodeField.getText()) == nr) {
             passwordLabel.setVisible(true);
             passwordField.setVisible(true);
@@ -143,10 +145,10 @@ public class RecoveryController implements Initializable {
     }
 
     @FXML
-    private void onReturnButtonPressed(ActionEvent event) throws Exception {
+    private void onReturnButtonPressed(ActionEvent event) throws Exception { //returns
         changeScene("login.fxml",event);
     }
-    private void mailSetup (User user) throws Exception {
+    private void mailSetup (User user) throws Exception { // mail stuff
         final String username = "dragoncaveproject2";
         final String password = "GlassGlassIcecream";
         Properties props = new Properties();
@@ -191,7 +193,7 @@ public class RecoveryController implements Initializable {
 
     }
 
-    public void setData (int mode) {
+    public void setData (int mode) { // sets what mode to use
         selectionmode = mode;
         if (mode == 1) {
             username_email_Label.setText("Please enter your email:");
@@ -201,7 +203,7 @@ public class RecoveryController implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) { //startup stuff
         recoveryLabel.setVisible(false);
         recoveryCodeField.setVisible(false);
         passwordField.setVisible(false);

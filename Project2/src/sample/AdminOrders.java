@@ -97,7 +97,7 @@ public class AdminOrders implements Initializable {
     private StringBuilder sb = new StringBuilder();
 
 
-    public void searchAdminOrders () {
+    public void searchAdminOrders () { // filters orders, depending on mode selected
         if (!searchField.getText().equals("")) {
             try {
 
@@ -117,19 +117,19 @@ public class AdminOrders implements Initializable {
     }
 
     @FXML
-    private void onEnterKeyPressedAdminOrders(KeyEvent event) {
+    private void onEnterKeyPressedAdminOrders(KeyEvent event) { // calls method on enter key
         if (event.getCode().equals(KeyCode.ENTER)) {
             searchAdminOrders();
         }
     }
 
     @FXML
-    private void onSearchButtonPressed(ActionEvent event) {
+    private void onSearchButtonPressed(ActionEvent event) { // calls method on button click
         searchAdminOrders();
     }
 
     @FXML
-    private void onConfirmButtonPressed(ActionEvent event) {
+    private void onConfirmButtonPressed(ActionEvent event) { //Updates orders, clears selection
         if (!orderIdLabel.getText().equals("")) {
             try {
                 dbc.updateOrderStatus(shippingChoiceBox.getValue(),Integer.valueOf(orderIdLabel.getText()));
@@ -153,7 +153,7 @@ public class AdminOrders implements Initializable {
     }
 
     @FXML
-    private void onReturnButtonPressed(ActionEvent event) throws IOException {
+    private void onReturnButtonPressed(ActionEvent event) throws IOException { // return to main menu
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -163,7 +163,7 @@ public class AdminOrders implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) { // setup for choiceboxes, columns, data, eventlisteners etc.
         shippingChoiceBox.setItems(FXCollections.observableArrayList("Pending","Processing","Shipped","Cancelled"));
         shippingChoiceBox.getSelectionModel().selectFirst();
         searchBox.setItems(FXCollections.observableArrayList("OrderID","Status","Order date","Username"));

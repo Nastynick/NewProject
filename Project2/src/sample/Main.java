@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Runnable music = () -> {
+        Runnable music = () -> { // background music thread
             Media media = new Media(getClass().getClassLoader().getResource("sample/bensound-straight.mp3").toString()); // Royalty free Music from: https://www.bensound.com
                 MediaPlayer player = new MediaPlayer(media);
                 player.setAutoPlay(true);

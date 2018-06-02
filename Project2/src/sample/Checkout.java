@@ -60,7 +60,7 @@ public class Checkout implements Initializable{
     private Label costLabel;
 
     @FXML
-    private void clearCartButtonPressed(ActionEvent event) throws Exception {
+    private void clearCartButtonPressed(ActionEvent event) throws Exception { // clears cart
 
         itemlist.clear();
         ObservableList<Item> cart = FXCollections.observableArrayList(itemlist);
@@ -70,7 +70,7 @@ public class Checkout implements Initializable{
     }
 
     @FXML
-    private void confirmButtonPressed(ActionEvent event) throws Exception {
+    private void confirmButtonPressed(ActionEvent event) throws Exception { //creates new order and sends it to next scene
         if (!itemlist.isEmpty()) {
             Order o = new Order(getRandomNr(),"Not Shipped","N/A",commentField.getText(),getTime(),UserSingleton.getInstance().getUsername(),itemlist);
 
@@ -88,7 +88,7 @@ public class Checkout implements Initializable{
     }
 
     @FXML
-    private void returnButtonPressed(ActionEvent event) throws Exception {
+    private void returnButtonPressed(ActionEvent event) throws Exception { // returns to mainmenu
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -100,14 +100,14 @@ public class Checkout implements Initializable{
 
     }
 
-    private String getTime () throws Exception {
+    private String getTime () throws Exception { // returns current day
         return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     }
-    private int getRandomNr() throws Exception {
+    private int getRandomNr() throws Exception { // returns new ID
         SecureRandom random = new SecureRandom();
         return random.nextInt(2147483647);
     }
-    private void startUp () throws Exception {
+    private void startUp () throws Exception { // setup for coluymns, table
         productColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         itemArea.setRowFactory(tv -> {
@@ -128,7 +128,7 @@ public class Checkout implements Initializable{
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) { // calls startUp, more stuff
         tooltip.setText("Double-click on an item to remove it.");
         itemArea.setTooltip(tooltip);
         try {
@@ -138,7 +138,7 @@ public class Checkout implements Initializable{
         }
     }
 
-    public void setData(ArrayList<Item> data) throws Exception {
+    public void setData(ArrayList<Item> data) throws Exception { // transfers cart
         itemlist = data;
 
         for (Item s : itemlist ) {

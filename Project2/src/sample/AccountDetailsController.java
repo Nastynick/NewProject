@@ -84,7 +84,7 @@ public class AccountDetailsController {
 
     }
 
-    private void updateDetailsUser (int passchange) {
+    private void updateDetailsUser (int passchange) { // Rushed method for inserting a user into the DB
 
         if (passchange == 0) {
             if (newPasswordField.getText().equals(e.getPassWord()) && !newPasswordField.getText().equals("")){
@@ -96,6 +96,11 @@ public class AccountDetailsController {
                 dbc.alterUser(user, 2);
 
                 inform.showAndWait();
+            } else {
+                error.setTitle("Update error!");
+                error.setHeaderText("Password mismatch");
+                error.setContentText("Failed to update account information! Please make sure so you confirm passwords if you want to change and user information");
+                error.showAndWait();
             }
 
         } else if (passchange ==1) {
@@ -108,12 +113,17 @@ public class AccountDetailsController {
                 dbc.alterUser(user, 2);
 
                 inform.showAndWait();
+            } else {
+                error.setTitle("Update error!");
+                error.setHeaderText("Password mismatch");
+                error.setContentText("Failed to update account information! Please make sure so you confirm passwords if you want to change and user information");
+                error.showAndWait();
             }
         }
 
     }
 
-    private void updateDetailsAdmin (int passchange) {
+    private void updateDetailsAdmin (int passchange) { // Rushed method for inserting a user into the DB
 
         if (passchange == 0) {
             if (newPasswordField.getText().equals(a.getPassWord()) && !newPasswordField.getText().equals("")){
@@ -153,7 +163,7 @@ public class AccountDetailsController {
     }
 
     @FXML
-    private void cancelButtonPressed(ActionEvent event) throws Exception {
+    private void cancelButtonPressed(ActionEvent event) throws Exception { //Returns to mainmenu
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -166,7 +176,7 @@ public class AccountDetailsController {
     }
 
     @FXML
-    private void updateButtonPressed(ActionEvent event) {
+    private void updateButtonPressed(ActionEvent event) { // calls on the update methods depending on user stauts, rushed.
         if (UserSingleton.getInstance().isAdmin()) {
             updateDetailsAdmin(newpass);
         } else if (!UserSingleton.getInstance().isAdmin()) {
@@ -174,7 +184,7 @@ public class AccountDetailsController {
         }
     }
 
-    public void setData(ArrayList<Item> list) {
+    public void setData(ArrayList<Item> list) { // Saves the cart, creates and fills out the fields depending on user status
         temp = list;
         adminIDField.setVisible(false);
         oldPasswordField.setVisible(false);

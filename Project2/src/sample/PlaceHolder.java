@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PlaceHolder {
+public class PlaceHolder { // isn't used anymore
      private String resource;
 
     @FXML

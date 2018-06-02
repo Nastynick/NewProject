@@ -55,7 +55,7 @@ public class OrderHistory implements Initializable{
     private DBSingleton dbc = new DBSingleton();
 
     @FXML
-    private void onReturnButtonPressed(ActionEvent event) throws Exception {
+    private void onReturnButtonPressed(ActionEvent event) throws Exception { // change scene
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -66,11 +66,11 @@ public class OrderHistory implements Initializable{
         stage.setScene(scene);
     }
 
-    public void setData (ArrayList<Item> list) throws Exception {
+    public void setData (ArrayList<Item> list) throws Exception { //cart
         temp = list;
     }
 
-    private void startUp () throws Exception {
+    private void startUp () throws Exception { //More things on startup
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
         dayOfPurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
         ObservableList<Order> oldOrders = FXCollections.observableArrayList(dbc.getOrder(UserSingleton.getInstance().getUsername()));

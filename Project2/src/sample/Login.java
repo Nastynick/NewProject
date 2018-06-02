@@ -46,17 +46,17 @@ public class Login implements Initializable {
 
 
     @FXML
-    private void onLoginButtonPressed(ActionEvent event) throws Exception {
+    private void onLoginButtonPressed(ActionEvent event) throws Exception { // calls login
         login(event);
     }
 
     @FXML
-    private void onRegisterButtonPressed(ActionEvent event) throws Exception {
+    private void onRegisterButtonPressed(ActionEvent event) throws Exception { // change to reg. page
         changeScene("registrationPage.fxml",event);
     }
 
     @FXML
-    private void onEnterKeyPressedLogin(KeyEvent event) throws Exception {
+    private void onEnterKeyPressedLogin(KeyEvent event) throws Exception { // calls login
         if (event.getCode().equals(KeyCode.ENTER)) {
             login(event);
         }
@@ -64,7 +64,7 @@ public class Login implements Initializable {
 
 
 
-    private void login (Event event) throws Exception {
+    private void login (Event event) throws Exception { // Login method
         if (!userNameField.getText().equals("") && !passwordField.getText().equals("")) {
             if (dbc.login(userNameField.getText(),passwordField.getText())) {
                 UserSingleton.getInstance().setAdmin(dbc.adminCheck(userNameField.getText()));
@@ -97,16 +97,16 @@ public class Login implements Initializable {
     }
 
     @FXML
-    private void onForgottenPasswordPressed(ActionEvent event) throws Exception {
+    private void onForgottenPasswordPressed(ActionEvent event) throws Exception { // type of recovery
         recoveryChangeScene(event, 2);
     }
 
     @FXML
-    private void onForgottenUsernamePressed(ActionEvent event) throws Exception {
+    private void onForgottenUsernamePressed(ActionEvent event) throws Exception { // type of recovery
         recoveryChangeScene(event,1);
     }
 
-    private void recoveryChangeScene (ActionEvent event, int selection) throws Exception {
+    private void recoveryChangeScene (ActionEvent event, int selection) throws Exception { // change to recovery page
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 

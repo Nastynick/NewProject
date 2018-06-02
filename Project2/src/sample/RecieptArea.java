@@ -43,18 +43,18 @@ public class RecieptArea implements Initializable {
     private Order o;
 
     @FXML
-    private void exitButtonPressed(ActionEvent event) throws Exception {
+    private void exitButtonPressed(ActionEvent event) throws Exception { // logsout
         UserSingleton.getInstance().setAdmin(false);
         UserSingleton.getInstance().setUsername(null);
         changeScene("login.fxml", event);
     }
 
     @FXML
-    private void returnButtonPressed(ActionEvent event) throws Exception {
+    private void returnButtonPressed(ActionEvent event) throws Exception { //return to mainmenu
         changeScene("MainMenu.fxml", event);
     }
 
-    private void changeScene(String newScene, ActionEvent event) throws Exception {
+    private void changeScene(String newScene, ActionEvent event) throws Exception { // changescene
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(newScene));
@@ -63,7 +63,7 @@ public class RecieptArea implements Initializable {
         stage.setScene(scene);
 
     }
-    public void setData (Order order) throws Exception {
+    public void setData (Order order) throws Exception { //inserts order before scene loads, loads up receipt.
         o = order;
         String boughtList ="";
         double price = 0;
@@ -84,7 +84,7 @@ public class RecieptArea implements Initializable {
         User u = ul.get(0);
         mailSetup(u.getEmail());
     }
-    private void mailSetup (String email) {
+    private void mailSetup (String email) { //sends mail to the user with their order
         final String username = "dragoncaveproject2";
         final String password = "GlassGlassIcecream";
         Properties props = new Properties();

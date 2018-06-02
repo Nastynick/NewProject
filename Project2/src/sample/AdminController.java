@@ -125,7 +125,7 @@ public class AdminController implements Initializable {
 
 
     @FXML
-    private void onSearchButtonPressed(ActionEvent event) throws Exception {
+    private void onSearchButtonPressed(ActionEvent event) throws Exception { // Search method
         if (usersRadioB.isSelected()) {
             updateUsers(searchField.getText(),2);
         } else if (itemsRadioB.isSelected()) {
@@ -136,7 +136,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    void OnEnterKeyPressedAdmin(KeyEvent event) throws Exception {
+    void OnEnterKeyPressedAdmin(KeyEvent event) throws Exception { // Search method
         if (event.getCode().equals(KeyCode.ENTER)) {
             if (usersRadioB.isSelected()) {
                 updateUsers(searchField.getText(),2);
@@ -147,7 +147,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void onAddButtonPressed(ActionEvent event) throws Exception {
+    private void onAddButtonPressed(ActionEvent event) throws Exception { // Adds a new user or item depending on mode, error handling.
         if (itemsRadioB.isSelected()) {
             if (!itemID_UsernameField.getText().equals("")) {
                 int i = 0;
@@ -175,6 +175,7 @@ public class AdminController implements Initializable {
                 statusLabel.setText("Error: First field empty!");
             }
             updateTables();
+            resetFields();
 
         } else if (usersRadioB.isSelected()) {
 
@@ -211,7 +212,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void onRemoveButtonPressed(ActionEvent event) throws Exception {
+    private void onRemoveButtonPressed(ActionEvent event) throws Exception { //Removes user or item from DB depending on mode.
         if (!itemID_UsernameField.getText().equals("")) {
             if (itemsRadioB.isSelected()) {
                 Item item = new Item(Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(), Double.valueOf(price_lastnameField.getText()), Integer.valueOf(stock_emailField.getText()), "Test", address_ImageURL_Field.getText());
@@ -227,7 +228,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void onReturnButtonPressed(ActionEvent event) throws Exception {
+    private void onReturnButtonPressed(ActionEvent event) throws Exception { //return to mainmenu
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -237,7 +238,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void onUpdateButtonpressed(ActionEvent event) throws Exception {
+    private void onUpdateButtonpressed(ActionEvent event) throws Exception { //updates the item or user
         if (itemsRadioB.isSelected() && !itemID_UsernameField.getText().equals("")) {
             Item item = new Item(Integer.valueOf(itemID_UsernameField.getText()), itemname_firstnameField.getText(), Double.valueOf(price_lastnameField.getText()), Integer.valueOf(stock_emailField.getText()), productdescField.getText(), address_ImageURL_Field.getText());
             dbc.alterItem(item,2);
@@ -250,7 +251,7 @@ public class AdminController implements Initializable {
         updateTables();
     }
 
-    public void radioSelect(ActionEvent event) throws Exception {
+    public void radioSelect(ActionEvent event) throws Exception { // calls on the method for showing which mode
         if (itemsRadioB.isSelected()) {
             selection("ItemID:", "Item name:", "Price:", "Stock:","ImageURL:","Produc Desc:", false);
 
@@ -259,7 +260,7 @@ public class AdminController implements Initializable {
         }
     }
 
-    private void selection(String one, String two, String three, String four, String five,String six, boolean b) throws Exception {
+    private void selection(String one, String two, String three, String four, String five,String six, boolean b) throws Exception { //method for what mode
         clearAll();
         itemID_usernameLabel.setText(one);
         itemname_firstnamelabel.setText(two);
@@ -279,7 +280,7 @@ public class AdminController implements Initializable {
 
     }
 
-    private void firstTimeSetup() throws Exception {
+    private void firstTimeSetup() throws Exception { // sets everything up
         //dbc.Connect();
         firstColumnitem.setCellValueFactory(new PropertyValueFactory<>("itemID"));
         secondColumnitem.setCellValueFactory(new PropertyValueFactory<>("itemName"));
@@ -323,7 +324,7 @@ public class AdminController implements Initializable {
         });
     }
 
-    private void clearAll() throws Exception {
+    private void clearAll() throws Exception { // clears all, redundant perhaps?
         itemID_UsernameField.setText("");
         itemname_firstnameField.setText("");
         price_lastnameField.setText("");
@@ -334,23 +335,23 @@ public class AdminController implements Initializable {
         productdescField.setText("");
     }
 
-    private void updateTables() throws Exception {
+    private void updateTables() throws Exception { //calls below methods
         updateItems("",1);
         updateUsers("",1);
     }
 
-    private void updateItems (String search, int searchMethod) throws Exception {
+    private void updateItems (String search, int searchMethod) throws Exception { // updates table
         ObservableList<Item> itemData;
         itemData = FXCollections.observableArrayList(dbc.getItemList(search,searchMethod)
         );
         item_table.setItems(itemData);
     }
-    private void updateUsers (String search, int searchMethod) throws Exception {
+    private void updateUsers (String search, int searchMethod) throws Exception { // updates table
         ObservableList<User> userData;
         userData = FXCollections.observableArrayList(dbc.getUserList(search,searchMethod));
         user_table.setItems(userData);
     }
-    private void resetFields () {
+    private void resetFields () { // resets everything. redundancy, probably. not imporant, fix at later point.
         itemID_UsernameField.setText("");
         itemname_firstnameField.setText("");
         price_lastnameField.setText("");

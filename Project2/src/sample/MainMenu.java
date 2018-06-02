@@ -105,18 +105,18 @@ public class MainMenu implements Initializable {
     private Tooltip tooltip = new Tooltip();
 
     @FXML
-    void onOrderManagementButtonPressed(ActionEvent event) throws Exception {
+    void onOrderManagementButtonPressed(ActionEvent event) throws Exception { //calls change scene
         changeScene("AdminOrders.fxml",event);
     }
 
     @FXML
-    void onAdminPressed(ActionEvent event) throws Exception {
+    void onAdminPressed(ActionEvent event) throws Exception { //calls change scene
         changeScene("AdminController.fxml", event);
     }
 
 
     @FXML
-    void logOutButtonPressed(ActionEvent event) throws Exception {
+    void logOutButtonPressed(ActionEvent event) throws Exception { // reset singleton, change back to login
         UserSingleton.getInstance().setAdmin(false);
         UserSingleton.getInstance().setUsername(null);
         changeScene("login.fxml", event);
@@ -124,19 +124,19 @@ public class MainMenu implements Initializable {
     }
 
     @FXML
-    private void onEnterKeyPressedMM(KeyEvent event) {
+    private void onEnterKeyPressedMM(KeyEvent event) { // calls search
         if (event.getCode().equals(KeyCode.ENTER)) {
             search();
         }
     }
 
     @FXML
-    private void searchButtonPressed(ActionEvent event) throws Exception {
+    private void searchButtonPressed(ActionEvent event) throws Exception { //calls search
         search();
     }
 
     @FXML
-    private void viewAccountInformationButtonPressed(ActionEvent event) throws Exception {
+    private void viewAccountInformationButtonPressed(ActionEvent event) throws Exception { //account info page
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
@@ -149,7 +149,7 @@ public class MainMenu implements Initializable {
     }
 
     @FXML
-    private void viewCartButtonPressed(ActionEvent event) throws Exception {
+    private void viewCartButtonPressed(ActionEvent event) throws Exception {// cart page
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
@@ -164,7 +164,7 @@ public class MainMenu implements Initializable {
     }
 
     @FXML
-    private void viewOrderHistoryButtonPressed(ActionEvent event) throws Exception {
+    private void viewOrderHistoryButtonPressed(ActionEvent event) throws Exception { // order history page
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
@@ -176,7 +176,7 @@ public class MainMenu implements Initializable {
         stage.setScene(scene);
     }
 
-    private void changeScene(String newScene, ActionEvent event) throws Exception {
+    private void changeScene(String newScene, ActionEvent event) throws Exception { // scene method
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(newScene));
@@ -186,7 +186,7 @@ public class MainMenu implements Initializable {
 
     }
 
-    public void setData(ArrayList<Item> list) throws Exception {
+    public void setData(ArrayList<Item> list) throws Exception { // sets cart data
         cartP = list;
         cartPreviewData = FXCollections.observableArrayList(cartP);
         cartPreviewTable.setItems(cartPreviewData);
@@ -196,7 +196,7 @@ public class MainMenu implements Initializable {
         costLabelMM.setText(df.format(cost));
     }
 
-    private void startUp () throws Exception {
+    private void startUp () throws Exception { // setup for when the scene starts up
         //dbc.Connect();
         df.setRoundingMode(RoundingMode.UP);
         itemTableView.setRowFactory(tv -> {
@@ -242,7 +242,7 @@ public class MainMenu implements Initializable {
 
     }
 
-    private void search () {
+    private void search () { // search method
         if (!searchField.getText().equals("")) {
             itemlist = dbc.getItemList(searchField.getText(),2);
             itemData = FXCollections.observableArrayList(itemlist);
@@ -255,7 +255,7 @@ public class MainMenu implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) { // more setup
         tooltip.setText("Double-click on items to add them to your cart.");
         itemTableView.setTooltip(tooltip);
         adminButton.setVisible(false);
