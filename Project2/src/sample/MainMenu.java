@@ -3,6 +3,7 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import java.math.RoundingMode;
 import java.net.URL;
@@ -99,6 +102,8 @@ public class MainMenu implements Initializable {
     @FXML
     private Label productDescLabel;
 
+    private Tooltip tooltip = new Tooltip();
+
     @FXML
     void onOrderManagementButtonPressed(ActionEvent event) throws Exception {
         changeScene("AdminOrders.fxml",event);
@@ -119,17 +124,15 @@ public class MainMenu implements Initializable {
     }
 
     @FXML
-    private void searchButtonPressed(ActionEvent event) throws Exception {
-        if (!searchField.getText().equals("")) {
-            itemlist = dbc.getItemList(searchField.getText(),2);
-            itemData = FXCollections.observableArrayList(itemlist);
-            itemTableView.setItems(itemData);
-        } else if (searchField.getText().equals("")) {
-            itemlist = dbc.getItemList("",1);
-            itemData = FXCollections.observableArrayList(itemlist);
-            itemTableView.setItems(itemData);
+    private void onEnterKeyPressedMM(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            search();
         }
+    }
 
+    @FXML
+    private void searchButtonPressed(ActionEvent event) throws Exception {
+        search();
     }
 
     @FXML
@@ -239,8 +242,22 @@ public class MainMenu implements Initializable {
 
     }
 
+    private void search () {
+        if (!searchField.getText().equals("")) {
+            itemlist = dbc.getItemList(searchField.getText(),2);
+            itemData = FXCollections.observableArrayList(itemlist);
+            itemTableView.setItems(itemData);
+        } else if (searchField.getText().equals("")) {
+            itemlist = dbc.getItemList("",1);
+            itemData = FXCollections.observableArrayList(itemlist);
+            itemTableView.setItems(itemData);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tooltip.setText("Double-click on items to add them to your cart.");
+        itemTableView.setTooltip(tooltip);
         adminButton.setVisible(false);
         orderManagementButton.setVisible(false);
         if (UserSingleton.getInstance().isAdmin()) {

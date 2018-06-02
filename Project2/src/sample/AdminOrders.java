@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -95,9 +97,7 @@ public class AdminOrders implements Initializable {
     private StringBuilder sb = new StringBuilder();
 
 
-    @FXML
-    void onSearchButtonPressed(ActionEvent event) {
-
+    public void searchAdminOrders () {
         if (!searchField.getText().equals("")) {
             try {
 
@@ -114,11 +114,22 @@ public class AdminOrders implements Initializable {
                 e.printStackTrace();
             }
         }
-
     }
 
     @FXML
-    void onConfirmButtonPressed(ActionEvent event) {
+    private void onEnterKeyPressedAdminOrders(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            searchAdminOrders();
+        }
+    }
+
+    @FXML
+    private void onSearchButtonPressed(ActionEvent event) {
+        searchAdminOrders();
+    }
+
+    @FXML
+    private void onConfirmButtonPressed(ActionEvent event) {
         if (!orderIdLabel.getText().equals("")) {
             try {
                 dbc.updateOrderStatus(shippingChoiceBox.getValue(),Integer.valueOf(orderIdLabel.getText()));
@@ -142,7 +153,7 @@ public class AdminOrders implements Initializable {
     }
 
     @FXML
-    void onReturnButtonPressed(ActionEvent event) throws IOException {
+    private void onReturnButtonPressed(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));

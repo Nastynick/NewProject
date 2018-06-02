@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -131,6 +133,17 @@ public class AdminController implements Initializable {
         }
 
 
+    }
+
+    @FXML
+    void OnEnterKeyPressedAdmin(KeyEvent event) throws Exception {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            if (usersRadioB.isSelected()) {
+                updateUsers(searchField.getText(),2);
+            } else if (itemsRadioB.isSelected()) {
+                updateItems(searchField.getText(),2);
+            }
+        }
     }
 
     @FXML

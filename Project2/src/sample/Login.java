@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.net.URL;
@@ -52,8 +55,16 @@ public class Login implements Initializable {
         changeScene("registrationPage.fxml",event);
     }
 
+    @FXML
+    private void onEnterKeyPressedLogin(KeyEvent event) throws Exception {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            login(event);
+        }
+    }
 
-    private void login (ActionEvent event) throws Exception {
+
+
+    private void login (Event event) throws Exception {
         if (!userNameField.getText().equals("") && !passwordField.getText().equals("")) {
             if (dbc.login(userNameField.getText(),passwordField.getText())) {
                 UserSingleton.getInstance().setAdmin(dbc.adminCheck(userNameField.getText()));
@@ -76,7 +87,7 @@ public class Login implements Initializable {
         statusLabel.setTextFill(Color.web("#000000"));
         statusLabel.setText(registerMsg);
     }
-    private void changeScene (String newScene, ActionEvent event) throws Exception {
+    private void changeScene (String newScene, Event event) throws Exception {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(newScene));

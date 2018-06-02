@@ -47,16 +47,21 @@ public class Checkout implements Initializable{
     @FXML
     private TableColumn<?, ?> priceColumn;
 
+    @FXML
+    private TextArea commentField;
+
     private ArrayList<Item> itemlist = new ArrayList<>();
     private ObservableList<Item> cart;
     private double cost;
     private static DecimalFormat df = new DecimalFormat(".##");
+    private Tooltip tooltip = new Tooltip();
 
     @FXML
     private Label costLabel;
 
     @FXML
     private void clearCartButtonPressed(ActionEvent event) throws Exception {
+
         itemlist.clear();
         ObservableList<Item> cart = FXCollections.observableArrayList(itemlist);
         itemArea.setItems(cart);
@@ -67,7 +72,7 @@ public class Checkout implements Initializable{
     @FXML
     private void confirmButtonPressed(ActionEvent event) throws Exception {
         if (!itemlist.isEmpty()) {
-            Order o = new Order(getRandomNr(),"Not Shipped","N/A","B",getTime(),UserSingleton.getInstance().getUsername(),itemlist);
+            Order o = new Order(getRandomNr(),"Not Shipped","N/A",commentField.getText(),getTime(),UserSingleton.getInstance().getUsername(),itemlist);
 
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
@@ -96,8 +101,7 @@ public class Checkout implements Initializable{
     }
 
     private String getTime () throws Exception {
-        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        return date;
+        return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     }
     private int getRandomNr() throws Exception {
         SecureRandom random = new SecureRandom();
@@ -125,7 +129,8 @@ public class Checkout implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        tooltip.setText("Double-click on an item to remove it.");
+        itemArea.setTooltip(tooltip);
         try {
             startUp();
         } catch (Exception e) {
