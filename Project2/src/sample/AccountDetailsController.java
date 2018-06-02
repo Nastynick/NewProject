@@ -59,9 +59,98 @@ public class AccountDetailsController {
     @FXML
     private TextField adminIDField;
 
+    @FXML
+    private Button changePwordButton;
+
+    @FXML
+    private Label oldPasswordLabel;
+
+    @FXML
+    private Label adminIDLabel;
+
     private DBSingleton dbc = new DBSingleton();
     private ArrayList<Item> temp = new ArrayList<>();
     private ArrayList<User> localUserList = new ArrayList<>();
+    private User e;
+    private Admin a;
+    private int newpass = 0;
+
+    @FXML
+    private void onPwordButtonPressed(ActionEvent event) {
+        oldPasswordField.setVisible(true);
+        oldPasswordLabel.setVisible(true);
+        changePwordButton.setDisable(true);
+        newpass = 1;
+
+    }
+
+    private void updateDetailsUser (int passchange) {
+
+        if (passchange == 0) {
+            if (newPasswordField.getText().equals(e.getPassWord()) && !newPasswordField.getText().equals("")){
+                inform.setTitle("Account information");
+                inform.setHeaderText("Account information update");
+                inform.setContentText("Account information has been updated! Have a nice day!");
+
+                User user = new User(userNameField.getText(),  newPasswordField.getText(), addressField.getText(),emailField.getText(), firstNameField.getText(), lastNameField.getText(), Integer.valueOf(ageField.getText()), phoneNumberField.getText());
+                dbc.alterUser(user, 2);
+
+                inform.showAndWait();
+            }
+
+        } else if (passchange ==1) {
+            if (newPasswordField.getText().equals(e.getPassWord()) && newPasswordField.getText().equals(oldPasswordField.getText()) && !newPasswordField.getText().equals("")){
+                inform.setTitle("Account information");
+                inform.setHeaderText("Account information update");
+                inform.setContentText("Account information has been updated! Have a nice day!");
+
+                User user = new User(userNameField.getText(),  newPasswordField.getText(), addressField.getText(),emailField.getText(), firstNameField.getText(), lastNameField.getText(), Integer.valueOf(ageField.getText()), phoneNumberField.getText());
+                dbc.alterUser(user, 2);
+
+                inform.showAndWait();
+            }
+        }
+
+    }
+
+    private void updateDetailsAdmin (int passchange) {
+
+        if (passchange == 0) {
+            if (newPasswordField.getText().equals(a.getPassWord()) && !newPasswordField.getText().equals("")){
+                inform.setTitle("Account information");
+                inform.setHeaderText("Account information update");
+                inform.setContentText("Account information has been updated! Have a nice day!");
+
+                User user = new User(userNameField.getText(),  newPasswordField.getText(), addressField.getText(),emailField.getText(), firstNameField.getText(), lastNameField.getText(), Integer.valueOf(ageField.getText()), phoneNumberField.getText());
+                dbc.alterUser(user, 2);
+
+                inform.showAndWait();
+            } else {
+                error.setTitle("Update error!");
+                error.setHeaderText("Password mismatch");
+                error.setContentText("Failed to update account information! Please make sure so you confirm passwords if you want to change and user information");
+                error.showAndWait();
+            }
+
+        } else if (passchange ==1) {
+            if (newPasswordField.getText().equals(a.getPassWord()) && oldPasswordField.getText().equals(newPasswordField.getText()) && !newPasswordField.getText().equals("")){
+                inform.setTitle("Account information");
+                inform.setHeaderText("Account information update");
+                inform.setContentText("Account information has been updated! Have a nice day!");
+
+                User user = new User(userNameField.getText(),  newPasswordField.getText(), addressField.getText(),emailField.getText(), firstNameField.getText(), lastNameField.getText(), Integer.valueOf(ageField.getText()), phoneNumberField.getText());
+                dbc.alterUser(user, 2);
+
+                inform.showAndWait();
+            } else {
+                error.setTitle("Update error!");
+                error.setHeaderText("Password mismatch");
+                error.setContentText("Failed to update account information! Please make sure so you confirm passwords if you want to change and user information");
+                error.showAndWait();
+            }
+        }
+
+    }
 
     @FXML
     private void cancelButtonPressed(ActionEvent event) throws Exception {
@@ -78,36 +167,27 @@ public class AccountDetailsController {
 
     @FXML
     private void updateButtonPressed(ActionEvent event) {
-
-        if (oldPasswordField.getText().equals(newPasswordField.getText())) {
-            inform.setTitle("Account information");
-            inform.setHeaderText("Account information update");
-            inform.setContentText("Account information has been updated! Have a nice day!");
-
-            User user = new User(userNameField.getText(),  newPasswordField.getText(), addressField.getText(),emailField.getText(), firstNameField.getText(), lastNameField.getText(), Integer.valueOf(ageField.getText()), phoneNumberField.getText());
-            dbc.alterUser(user, 2);
-
-            inform.showAndWait();
-
-
-
-        } else {
-            error.setTitle("Update error!");
-            error.setHeaderText("Password mismatch");
-            error.setContentText("Failed to update account information! Please make sure so you confirm passwords if you want to change and user information");
-            error.showAndWait();
+        if (UserSingleton.getInstance().isAdmin()) {
+            updateDetailsAdmin(newpass);
+        } else if (!UserSingleton.getInstance().isAdmin()) {
+            updateDetailsUser(newpass);
         }
-
     }
 
     public void setData(ArrayList<Item> list) {
         temp = list;
         adminIDField.setVisible(false);
+        oldPasswordField.setVisible(false);
+        oldPasswordLabel.setVisible(false);
+        adminIDLabel.setVisible(false);
+
+
 
         if (UserSingleton.getInstance().isAdmin()) {
             try {
                 adminIDField.setVisible(true);
-                Admin a = dbc.getAdmin(UserSingleton.getInstance().getUsername());
+                adminIDLabel.setVisible(true);
+                a = dbc.getAdmin(UserSingleton.getInstance().getUsername());
                 userNameField.setText(a.getUserName());
                 firstNameField.setText(a.getFirstname());
                 lastNameField.setText(a.getLastname());
@@ -115,14 +195,13 @@ public class AccountDetailsController {
                 phoneNumberField.setText(a.getPhoneNumber());
                 addressField.setText(a.getAddress());
                 emailField.setText(a.getEmail());
-                oldPasswordField.setText(a.getPassWord());
                 adminIDField.setText(a.getAdminID());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else if (!UserSingleton.getInstance().isAdmin()) {
             ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 3);
-            User e = ul.get(0);
+            e = ul.get(0);
             userNameField.setText(e.getUserName());
             firstNameField.setText(e.getFirstname());
             lastNameField.setText(e.getLastname());
