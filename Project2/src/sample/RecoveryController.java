@@ -70,14 +70,15 @@ public class RecoveryController implements Initializable {
 
     @FXML
     private void onConfirmButtonPressed(ActionEvent event) { // final step before password change
-        if (passwordField.getText().equals(repeatpasswordField.getText()) && !passwordField.getText().equals("")) {
-            ArrayList<User> ul = dbc.getUserList(UserSingleton.getInstance().getUsername(), 3);
+        if (passwordField.getText().equals(repeatpasswordField.getText()) && !passwordField.getText().equals("") && passwordField.getLength() > 2) {
+            ArrayList<User> ul = dbc.getUserList(username_email_Field.getText(), 3);
             User e = ul.get(0);
+            e.setPassWord(passwordField.getText());
             dbc.alterUser(e,2);
             infoLabel.setText("Password reset! You may now go back and login.");
             confirmButton.setDisable(true);
         } else {
-            infoLabel.setText("Password field may not be empty and both must match!");
+            infoLabel.setText("Password field may not be empty and both must match and must be at least 3 characters");
         }
     }
 
