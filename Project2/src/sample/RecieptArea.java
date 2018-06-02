@@ -29,14 +29,6 @@ public class RecieptArea implements Initializable {
     @FXML
     private TextArea boughtItemField;
 
-    @FXML
-    private TableColumn<?, ?> quantityColumn;
-
-    @FXML
-    private TableColumn<?, ?> productColumn;
-
-    @FXML
-    private TableColumn<?, ?> priceColumn;
 
     private static DecimalFormat df = new DecimalFormat(".##");
 

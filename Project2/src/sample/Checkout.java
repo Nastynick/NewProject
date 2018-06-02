@@ -39,9 +39,6 @@ public class Checkout implements Initializable{
     private TableView<Item> itemArea;
 
     @FXML
-    private TableColumn<?, ?> quantityColoumn;
-
-    @FXML
     private TableColumn<?, ?> productColumn;
 
     @FXML

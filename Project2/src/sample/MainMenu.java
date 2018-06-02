@@ -44,12 +44,6 @@ public class MainMenu implements Initializable {
     private TextField searchField;
 
     @FXML
-    private Button addItem;
-
-    @FXML
-    private Button removeItem;
-
-    @FXML
     private TableView<Item> cartPreviewTable;
 
     @FXML
@@ -72,9 +66,6 @@ public class MainMenu implements Initializable {
 
     @FXML
     private TableColumn<Item, String> nameColumn;
-
-    @FXML
-    private TableColumn<Item, Integer> quantityColumn;
 
     @FXML
     private TableColumn<Item, Double> priceColumn;
