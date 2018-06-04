@@ -398,7 +398,7 @@ public class DBSingleton {
             shippeddate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         } else {
             shippeddate = "N/A";
-        }   
+        }
 
         String query = "UPDATE dragoncave.order SET status = ?, shippeddate = ? WHERE idorder = ?";
         assert conn != null;

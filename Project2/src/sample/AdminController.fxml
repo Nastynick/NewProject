@@ -51,19 +51,21 @@
             <Button layoutX="505.0" layoutY="541.0" mnemonicParsing="false" onAction="#onUpdateButtonpressed" prefHeight="38.0" prefWidth="94.0" text="Update" />
             <TextField fx:id="itemID_UsernameField" layoutX="255.0" layoutY="210.0" />
             <Label fx:id="itemID_usernameLabel" layoutX="255.0" layoutY="187.0" text="ItemID/Username" />
+            <TextField fx:id="itemname_firstnameField" layoutX="451.0" layoutY="210.0" />
             <TextField fx:id="price_lastnameField" layoutX="255.0" layoutY="255.0" />
+            <TextField fx:id="stock_emailField" layoutX="451.0" layoutY="255.0" />
+            <TextField fx:id="ageField" layoutX="255.0" layoutY="297.0" />
+            <TextField fx:id="address_ImageURL_Field" layoutX="451.0" layoutY="297.0" />
             <Label fx:id="itemname_firstnamelabel" layoutX="452.0" layoutY="187.0" text="itemName/firstName" />
             <Label layoutX="255.0" layoutY="280.0" />
             <Label fx:id="price_lastnameLabel" layoutX="255.0" layoutY="235.0" text="Price/lastname" />
-            <TextField fx:id="address_ImageURL_Field" layoutX="451.0" layoutY="297.0" />
             <Label fx:id="stock_emailLabel" layoutX="451.0" layoutY="235.0" text="Stock/email" />
             <TextField fx:id="phoneNumberField" layoutX="255.0" layoutY="339.0" />
             <Label fx:id="age_desc_Label" layoutX="255.0" layoutY="280.0" text="Age:" />
-            <TextField fx:id="stock_emailField" layoutX="451.0" layoutY="255.0" />
-            <TextField fx:id="ageField" layoutX="255.0" layoutY="297.0" />
-            <TextField fx:id="itemname_firstnameField" layoutX="451.0" layoutY="210.0" />
             <Label fx:id="address_ImageURLLabel" layoutX="453.0" layoutY="280.0" text="Address:" />
             <Label fx:id="phoneNumberLabel" layoutX="253.0" layoutY="322.0" text="Phone number:" />
+            <TextField fx:id="passwordField" layoutX="451.0" layoutY="339.0" />
+            <TextArea fx:id="productdescField" layoutX="255.0" layoutY="297.0" prefHeight="90.0" prefWidth="149.0" wrapText="true" />
             <TextField fx:id="searchField" layoutX="14.0" layoutY="62.0" onKeyPressed="#OnEnterKeyPressedAdmin" prefHeight="25.0" prefWidth="119.0" />
             <Label layoutX="14.0" layoutY="45.0" text="Search:" />
                 <ImageView fx:id="logoImage" fitHeight="164.0" fitWidth="338.0" layoutX="274.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
@@ -78,10 +80,8 @@
                   <TableColumn fx:id="secondColumnuser" prefWidth="85.0" text="First name:" />
                </columns>
             </TableView>
-            <TextField fx:id="passwordField" layoutX="451.0" layoutY="339.0" />
             <Label fx:id="passwordLabel" layoutX="450.0" layoutY="322.0" text="Password:" />
             <Label fx:id="statusLabel" layoutX="250.0" layoutY="475.0" prefHeight="17.0" prefWidth="355.0" />
-            <TextArea fx:id="productdescField" layoutX="255.0" layoutY="297.0" prefHeight="90.0" prefWidth="149.0" wrapText="true" />
             </children>
         </AnchorPane>
     </children>

@@ -33,19 +33,19 @@
             <Label layoutX="213.0" layoutY="182.0" text="First name:" />
             <Label layoutX="365.0" layoutY="182.0" text="Last name:" />
             <TextField fx:id="addressField" layoutX="212.0" layoutY="241.0" prefHeight="25.0" prefWidth="301.0" />
+            <TextField fx:id="emailField" layoutX="212.0" layoutY="284.0" prefHeight="25.0" prefWidth="301.0" />
             <Label layoutX="213.0" layoutY="224.0" text="Address:" />
             <TextField fx:id="phoneNumberField" layoutX="213.0" layoutY="335.0" prefHeight="25.0" prefWidth="185.0" />
+            <TextField fx:id="ageField" layoutX="406.0" layoutY="335.0" prefHeight="25.0" prefWidth="99.0" />
             <Label layoutX="213.0" layoutY="314.0" text="Phone number:" />
             <Label layoutX="413.0" layoutY="314.0" text="Age:" />
             <Label layoutX="213.0" layoutY="360.0" text="Password:" />
             <Label layoutX="363.0" layoutY="360.0" text="Confirm password:" />
+            <PasswordField fx:id="passwordField" layoutX="213.0" layoutY="380.0" />
+            <PasswordField fx:id="confirmPasswordField" layoutX="365.0" layoutY="380.0" />
             <Button fx:id="registerRegisterButton" layoutX="585.0" layoutY="535.0" mnemonicParsing="false" onAction="#onRegisterRegisterButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Register" />
             <Button fx:id="registerCancel" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#onRegisterCancelButtonPressed" prefHeight="44.0" prefWidth="127.0" text="Cancel" />
             <Label fx:id="registrationStatusLabel" alignment="TOP_CENTER" layoutX="212.0" layoutY="444.0" prefHeight="135.0" prefWidth="301.0" textFill="#bb0000" />
-            <PasswordField fx:id="passwordField" layoutX="213.0" layoutY="380.0" />
-            <PasswordField fx:id="confirmPasswordField" layoutX="365.0" layoutY="380.0" />
-            <TextField fx:id="ageField" layoutX="406.0" layoutY="335.0" prefHeight="25.0" prefWidth="99.0" />
-            <TextField fx:id="emailField" layoutX="212.0" layoutY="284.0" prefHeight="25.0" prefWidth="301.0" />
             <Label layoutX="213.0" layoutY="266.0" text="Email:" />
             </children>
         </AnchorPane>
