@@ -1275,9 +1275,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 223,
+													"left": 133,
 													"top": 223,
-													"width": 296.9306640625,
+													"width": 476.13134765625,
 													"height": 13,
 													"autoResize": false,
 													"alpha": -3.261496653263017,
@@ -1287,7 +1287,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "4 : addItem(itemID, itemName, price, manufacturer)",
+													"text": "4 : addItem(itemID, itemName, price, manufacturer, product decription, imageURL)",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -1445,9 +1445,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 232,
+													"left": 163,
 													"top": 263,
-													"width": 315.00244140625,
+													"width": 453.73046875,
 													"height": 13,
 													"autoResize": false,
 													"alpha": -3.2336395165344034,
@@ -1457,7 +1457,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "5 : updateItem(itemID, itemName, price, manufacturer)",
+													"text": "5 : updateItem(itemID, itemName, price, manufacturer, description, imageURL)",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -2514,7 +2514,7 @@
 									},
 									"visibility": "public",
 									"messageSort": "asynchCall",
-									"arguments": "itemID, itemName, price, manufacturer",
+									"arguments": "itemID, itemName, price, manufacturer, product decription, imageURL",
 									"isConcurrentIteration": false
 								},
 								{
@@ -2532,7 +2532,7 @@
 									},
 									"visibility": "public",
 									"messageSort": "asynchCall",
-									"arguments": "itemID, itemName, price, manufacturer",
+									"arguments": "itemID, itemName, price, manufacturer, description, imageURL",
 									"isConcurrentIteration": false
 								},
 								{

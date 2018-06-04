@@ -765,9 +765,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 270,
+													"left": 204,
 													"top": 111,
-													"width": 289.7197265625,
+													"width": 421.94775390625,
 													"height": 13,
 													"autoResize": false,
 													"alpha": -4.514994382073455,
@@ -777,7 +777,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "1 : addItem(ID, name, price, stock, manufacturer)",
+													"text": "1 : addItem(ID, name, price, stock, manufacturer, description, imageURL)",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -3173,7 +3173,7 @@
 									},
 									"visibility": "public",
 									"messageSort": "asynchCall",
-									"arguments": "ID, name, price, stock, manufacturer",
+									"arguments": "ID, name, price, stock, manufacturer, description, imageURL",
 									"isConcurrentIteration": false
 								},
 								{
@@ -3503,6 +3503,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
